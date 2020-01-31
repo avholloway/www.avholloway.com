@@ -32,14 +32,20 @@
 	<div></div>
 	<div></div>
   <div></div>
-  <div><h2>List Summarizer</h2></div>
+  <div>
+    <h2><input type="radio" name="feature" onclick="switch_feature('summarize')" checked="checked" /> List Summarizer</h2>
+    <h2><input type="radio" name="feature" onclick="switch_feature('expand')" /> Pattern Expander</h2>
+  </div>
   <div></div>
   <div></div>
 	<div></div>
 	<div>
 		<fieldset>
 			<legend>Input</legend>
-			<p><button onclick="handler_summarize()">Summarize List</button></p>
+			<p>
+          <button onclick="handler_summarize()" class="summarize">Summarize List</button>
+          <button onclick="handler_expander()" class="expand">Expand Patterns</button>
+      </p>
 			<div><textarea id="input" rows="30"></textarea></div>
 		</fieldset>
 	</div>
@@ -53,48 +59,20 @@
 	<div></div>
 	<div></div>
 	<div>
-		<p>Example Input:</p>
-		<pre>1000
+    <p>Example Input:</p>
+		<pre class="summarize">1000
 1001
 1002
 2008
 2009</pre>
-	</div>
-	<div>
-		<p>Example Output:</p>
-		<pre>100[0-2]
+  <pre class="expand">100[0-2]
 200[89]</pre>
-	</div>
-	<div></div>
-  <div></div>
-  <div><h2>Pattern Expander</h2></div>
-  <div></div>
-  <div></div>
-	<div></div>
-	<div>
-		<fieldset>
-			<legend>Input</legend>
-			<p><button onclick="handler_expander()">Expand Patterns</button></p>
-			<div><textarea id="input-expander" rows="30"></textarea></div>
-		</fieldset>
-	</div>
-	<div>
-		<fieldset>
-			<legend>Output</legend>
-			<p><button onclick="handler_copy()">Copy Output</button></p>
-			<textarea id="output-expander" rows="30"></textarea>
-		</fieldset>
-	</div>
-	<div></div>
-	<div></div>
-	<div>
-		<p>Example Input:</p>
-    <pre>100[0-2]
+  </div>
+  <div>
+    <p>Example Output:</p>
+	  <pre class="summarize">100[0-2]
 200[89]</pre>
-	</div>
-	<div>
-		<p>Example Output:</p>
-    <pre>1000
+    <pre class="expand">1000
 1001
 1002
 2008
@@ -102,6 +80,28 @@
 	</div>
 	<div></div>
 	<div></div>
+	<div>
+    <div class="summarize">
+      <p>Summarizer Limitations:</p>
+      <ul>
+        <li>Leading plus signs (+) are not supported</li>
+        <li>Mixed length numbers are not supported</li>
+        <li>The order of the output is based on least to most complex summarizations and not numerical</li>
+      </ul>
+    </div>
+    <div class="expand">
+      <p>Expander Limitations:</p>
+      <ul>
+        <li>Leading plus signs (+) are not supported</li>
+        <li>There must be atleast 1 literal number prefixing the patter</li>
+        <li>^ character not supported in square brackets</li>
+        <li>*, #, A-D are not supported</li>
+      </ul>
+    </div>
+  </div>
+	<div></div>
+	<div></div>
+  <div></div>
 	<div><p class="footer">Version 3 - 2020-01-30</p></div>
 	<div></div>
 	<div></div>

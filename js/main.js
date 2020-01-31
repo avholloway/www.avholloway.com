@@ -1,3 +1,27 @@
+// on page load
+(function() {
+	// set the active feature
+	switch_feature('summarize');
+})();
+
+// the feature has switched
+function switch_feature(feature) {
+
+	switch (feature) {
+
+		case 'expand':
+			$('.expand').show();
+			$('.summarize').hide();
+			break;
+
+		case 'summarize':
+		default:
+			$('.summarize').show();
+			$('.expand').hide();
+
+	}
+}
+
 // the copy button was clicked
 function handler_copy() {
 	const $output = $('#output');
@@ -49,11 +73,11 @@ function handler_summarize() {
 function handler_expander() {
 
 	// erase the output field
-	const $output = $('#output-expander');
+	const $output = $('#output');
 	$output.val('');
 
 	// read in the input field
-	const $input = $('#input-expander');
+	const $input = $('#input');
 	let list = $input.val().split('\n');
 
 	// remove blank lines
@@ -148,24 +172,16 @@ function summarize(list) {
 		// complete for us means there is either a sub-10 range returned to us
 		// or the range has no summarization in it (e.g., 1000)
 		let complete_ranges = my_ranges.filter(e => /(\[|^\d+$)/.test(e));
-		console.log('complete_ranges');
-		console.log(complete_ranges);
 
 		// we then keep the remaining ranges for further processing, by getting
 		// the difference of the two arrays
 		let incomplete_ranges = my_ranges.filter(e => !complete_ranges.includes(e));
-		console.log('incomplete_ranges');
-		console.log(incomplete_ranges);
 
 		// append the new complete ranges to our large list of summarized ranges
 		summarized_list = summarized_list.concat(complete_ranges);
-		console.log('summarized_list');
-		console.log(summarized_list);
 
 		// modify our original starting list, and let's loop it again for further processing
 		list = incomplete_ranges.slice();
-		console.log('list');
-		console.log(list);
 
 		// unless the previous list length is the same size as this new list
 		// which means we've made no progress in further reducing it, so just quit
