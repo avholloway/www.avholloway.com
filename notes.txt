@@ -1,0 +1,72 @@
+Pattern Summarization
+============================================================================================================================
+Turn this: 1000, 1001, 1002, 1003, 2000, 2001
+Into this: 100[0-3], 200[01]
+
+
+Input
+----------------------------------------------------------------------------------------------------------------------------
+A string of numbers, one on each line, newline separated
+
+E.g.,
+
+1000
+1001
+1002
+1003
+2000
+2001
+
+
+Output
+----------------------------------------------------------------------------------------------------------------------------
+A string of patterns, one on each line, newline separated
+
+E.g.,
+
+100[0-3]
+200[01]
+
+
+Step 1 - Input Validation
+----------------------------------------------------------------------------------------------------------------------------
+As a whole:
+	trim
+	not empty
+
+Per Line:
+	trim
+	not empty
+	is positive integer
+
+
+
+Pattern List
+============================================================================================================================
+Turn this: 100[0-3], 200[01]
+Into this: 1000, 1001, 1002, 1003, 2000, 2001
+
+
+
+0 = every number starts off like this
+[01] = groups within the same tens range
+	100[0123689]
+	100[12345679]
+[0-5] = shorthand for contiguous groups
+	100[0-3689]
+	100[1-79]
+X = shorthand for [0-9]
+
+1XXX = Yes - one or more X wildcards after a number
+XXXX = Yes - all X wildcards is possible
+X111 = No - No literal numbers after a wild card
+[]111 = No - No literal numbers after a wild card
+1[][][] = No - only one set of brackets per summarization
+11[]X = Yes - X wildcards can come after brackets
+1XX[] = No - brackets cannot succeed X
+111[] = Yes - brackets must be preceded by literals
+
+100X
+101X
+
+CiscoPattern.tens_place() => "3"
