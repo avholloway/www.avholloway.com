@@ -44,7 +44,7 @@ function handler_summarize() {
   const is_e123 = /^\+/.test(list[0]);
   if (is_e123) {
     // remove all patterns without prefix, we don't support mixed input
-    list = list.filter((e) => /^[^\+]/.test(e));
+    list = list.filter((e) => /^\+/.test(e));
 
     // remove the prefix itself, from remaining patterns, we'll add it back later
     list = list.map((e) => e.replace(/^\+/, ""));
