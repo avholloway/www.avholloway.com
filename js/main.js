@@ -67,7 +67,13 @@ function handler_summarize() {
   list = list.filter((e) => e.length === pattern_length);
 
   // Replace the input with our new/clean input, so the user can see what we're summarizing for them
-  $input.val(list.join("\n"));
+  // But we need a trick here to add the possible e.123 prefix back on just for cosmetics
+  if (is_e123) {
+    const list_with_e123_prefix = list.map((e) => "+" + e);
+    $input.val(list_with_e123_prefix.join("\n"));
+  } else {
+    $input.val(list.join("\n"));
+  }
 
   // Summarize the patterns and return the patterns; one per line
   $output.val(summarize(list, is_e123).join("\n"));
