@@ -105,7 +105,7 @@ function handler_expander() {
   if (list.length === 0) return;
 
   // convert CUCM specific pattern to JS RegExp pattern
-  const patterns = list.map((e) => new RegExp(e.replace(/X/g, "\\d")));
+  const patterns = list.map((e) => new RegExp(e.replace(/X/gi, "\\d")));
 
   const lengths = [];
   const prefixes = [];
