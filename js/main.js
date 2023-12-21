@@ -70,7 +70,7 @@ function handler_summarize() {
   $input.val(list.join("\n"));
 
   // Summarize the patterns and return the patterns; one per line
-  $output.val(summarize(list).join("\n"));
+  $output.val(summarize(list, is_e123).join("\n"));
 
   return;
 }
@@ -141,9 +141,10 @@ function handler_expander() {
 
 /*
   Input: Array of fixed length phone numbers (E.g., ["1000", "1001", "2001", "2002", "3000"])
+		 Boolean indicating if e.123 + prefix was supplied on input or not
   Output: Array of summarizations for the input phone numbers (E.g., ["100[01]", "200[12]", "3000"])
 */
-function summarize(list) {
+function summarize(list, is_e123) {
   // a place to store our soon to be summarized list
   let summarized_list = [];
 
@@ -195,6 +196,11 @@ function summarize(list) {
   // if there are any remaining ranges left in our list, which could not be further
   // processed, then add them to the summarized list
   summarized_list = summarized_list.concat(list);
+
+  // put the e.123 prefix back on, if we took it off earlier
+  if (is_e123) {
+    summarized_list = summarized_list.map((e) => "+" + e);
+  }
 
   return summarized_list;
 }
