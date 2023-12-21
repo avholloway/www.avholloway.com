@@ -88,6 +88,16 @@ function handler_expander() {
   // remove blank lines
   list = list.filter((e) => !!e.length);
 
+  // preserve e.123 + prefixing
+  const is_e123 = /^\+/.test(list[0]);
+  if (is_e123) {
+    // remove all patterns without prefix, we don't support mixed input
+    list = list.filter((e) => /^\+/.test(e));
+
+    // remove the prefix itself, from remaining patterns, we'll add it back later
+    list = list.map((e) => e.replace(/^\+/, ""));
+  }
+
   // remove duplicates
   list = [...new Set(list)];
 
@@ -133,6 +143,11 @@ function handler_expander() {
         // store the number if it would match our pattern
         results.push(x);
     }
+  }
+
+  // put the e.123 prefix back on, if we took it off earlier
+  if (is_e123) {
+    results = results.map((e) => "+" + e);
   }
 
   // results are ready
