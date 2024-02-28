@@ -7,6 +7,6 @@ for (const p of searchParams) {
   }
 }
 data.masked_value = data.value.slice(-1 * searchParams.get("mask"));
-window.location.href = `${searchParams1.get("target")}?${data.key}=${
+window.location.href = `${searchParams.get("target")}?${data.key}=${
   data.masked_value
 }`;
