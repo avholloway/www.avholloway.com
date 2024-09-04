@@ -79,7 +79,10 @@
       <div>
         <fieldset>
           <legend>Output</legend>
-          <p><button onclick="handler_copy()">Copy Output</button></p>
+          <p>
+            <button onclick="handler_copy()">Copy Output</button>
+            <input type="checkbox" id="csv" onclick="handler_csv()" /> CSV
+          </p>
           <textarea id="output" rows="30"></textarea>
         </fieldset>
       </div>

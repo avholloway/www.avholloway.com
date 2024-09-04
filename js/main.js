@@ -27,6 +27,20 @@ function handler_copy() {
   return false;
 }
 
+// the csv checkbox was checked
+function handler_csv() {
+  const $output = $("#output");
+  if ($output.val() === "") return;
+  let list = $output.val();
+  const csv_enabled = $("#csv").is(":checked");
+  if (csv_enabled) {
+    list = list.split("\n").join(",");
+  } else {
+    list = list.split(",").join("\n");
+  }
+  $output.val(list);
+}
+
 // the summarize button was clicked
 function handler_summarize() {
   // erase the output field
