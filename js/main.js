@@ -2,6 +2,7 @@
 (function () {
   // set the active feature
   switch_feature("summarize");
+  $("#quoted_field").hide();
 })();
 
 // the feature has switched
@@ -28,17 +29,44 @@ function handler_copy() {
 }
 
 // the csv checkbox was checked
-function handler_csv() {
+function handler_csv(quoted = false) {
   const $output = $("#output");
-  if ($output.val() === "") return;
   let list = $output.val();
   const csv_enabled = $("#csv").is(":checked");
+  const $quoted_field = $("#quoted_field");
+  if ($output.val() === "") return;
   if (csv_enabled) {
-    list = list.split("\n").join(",");
+    $quoted_field.show();
+    if (list.includes(",")) {
+      list = list.split(",");
+    } else {
+      list = list.split("\n");
+    }
+    if (quoted) {
+      list = list.map((s) => JSON.stringify(s));
+      list = list.join(",");
+    } else {
+      list = list.join(",");
+      if (list.includes('"')) list = list.replaceAll('"', "");
+    }
   } else {
+    $quoted_field.hide();
     list = list.split(",").join("\n");
   }
   $output.val(list);
+}
+
+// the quoted checkbox was checked
+function handler_quoted() {
+  const $output = $("#output");
+  let list = $output.val();
+  const quoted_enabled = $("#quoted").is(":checked");
+  if ($output.val() === "") return;
+  if (quoted_enabled) {
+    handler_csv(true);
+  } else {
+    handler_csv();
+  }
 }
 
 // the summarize button was clicked
