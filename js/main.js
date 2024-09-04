@@ -50,8 +50,10 @@ function handler_csv(quoted = false) {
       if (list.includes('"')) list = list.replaceAll('"', "");
     }
   } else {
+    $("#quoted").prop("checked", false);
     $quoted_field.hide();
     list = list.split(",").join("\n");
+    if (list.includes('"')) list = list.replaceAll('"', "");
   }
   $output.val(list);
 }
