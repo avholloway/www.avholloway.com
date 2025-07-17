@@ -77,11 +77,7 @@
       setInterval(function () {
         console.log({"json":data});
         imichatwidget.init(data, function(response) {
-          // nothing needed here
-        });
-        console.log("waiting for chat widget to load...");
-        imichatwidget.on("imichat-widget:ready", function(appId){
-          console.log({"loaded":true,"appId":appId});
+          console.log({"inside":true,"json":data});
         });
       }, 2000);
     </script>
