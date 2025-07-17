@@ -5,11 +5,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Webex Contact Center Live Chat</title>
-    <script>
-      imichatwidget.on("imichat-widget:ready", function(appId){
-      	console.log({"loaded":true,"appId":appId});
-      });
-    </script>
   </head>
   <body>
     <h1>Webex Contact Center Live Chat</h1>
@@ -70,6 +65,12 @@
         },
       };
       i.t(function (t) {});
+    </script>
+    <script>
+      console.log("waiting for chat widget to load...");
+      imichatwidget.on("imichat-widget:ready", function(appId){
+      	console.log({"loaded":true,"appId":appId});
+      });
     </script>
   </body>
 </html>
