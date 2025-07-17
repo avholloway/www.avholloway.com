@@ -74,10 +74,10 @@
           "email": "avholloway@gmail.com"
         }
       };
-      setInterval(function () {
-        console.log({"json":data});
+      setTimeout(function () {
+        console.log("my custom timeout area fired");
         imichatwidget.init(data, function(response) {
-          console.log({"inside":true,"json":data});
+          console.log("inside of imi chat init function");
         });
       }, 2000);
     </script>
