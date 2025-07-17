@@ -67,6 +67,15 @@
       i.t(function (t) {});
     </script>
     <script>
+      const data = {
+        "custom_chat_fields": {
+          "name": "Anthony Holloway",
+          "email": "avholloway@gmail.com"
+        }
+      };
+      imichatwidget.init(data, function(response) {
+        // nothing needed here
+      });
       console.log("waiting for chat widget to load...");
       imichatwidget.on("imichat-widget:ready", function(appId){
       	console.log({"loaded":true,"appId":appId});
