@@ -72,13 +72,15 @@
           "email": "avholloway@gmail.com"
         }
       };
-      imichatwidget.init(data, function(response) {
-        // nothing needed here
-      });
-      console.log("waiting for chat widget to load...");
-      imichatwidget.on("imichat-widget:ready", function(appId){
-      	console.log({"loaded":true,"appId":appId});
-      });
+      setInterval(function () {
+        imichatwidget.init(data, function(response) {
+          // nothing needed here
+        });
+        console.log("waiting for chat widget to load...");
+        imichatwidget.on("imichat-widget:ready", function(appId){
+          console.log({"loaded":true,"appId":appId});
+        });
+      }, 2000);
     </script>
   </body>
 </html>
