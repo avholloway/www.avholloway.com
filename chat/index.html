@@ -66,13 +66,16 @@
         },
       };
       i.t(function (t) {});
-            const data = {
+
+
+      const data = {
         "custom_chat_fields": {
           "name": "Anthony Holloway",
           "email": "avholloway@gmail.com"
         }
       };
       setInterval(function () {
+        console.log({"json":data});
         imichatwidget.init(data, function(response) {
           // nothing needed here
         });
