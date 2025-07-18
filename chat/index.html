@@ -67,26 +67,24 @@
       i.t(function (t) {});
 
       const wait_code = setInterval(() => {
-        console.log("waiting for imichatwidget to load...");
 
-        if (!imichatwidget) return;
+        // if chat widget global object isn't present, escape
+        if (typeof imichatwidget === 'undefined') return;
+
+        // chat widget global object found, stop waiting for it
         clearInterval(wait_code);
 
-        imichatwidget.on("imichat-widget:ready", function(appId){
-          console.log("widget loaded");
+        // the data we want to send the chat widget
+        const data = {
+          "custom_chat_fields": {
+            "name": "Anthony Holloway",
+            "email": "avholloway@gmail.com"
+          }
+        };
 
-          const data = {
-            "custom_chat_fields": {
-              "name": "Anthony Holloway",
-              "email": "avholloway@gmail.com"
-            }
-          };
-
-          imichatwidget.init(data, function(response) {
-            console.log("inside of imi chat init function");
-            console.log({"response": response});
-          });
-
+        // send the data upon init
+        imichatwidget.init(data, () => {
+          console.log("inside of imi chat init function");
         });
 
       }, 500);
