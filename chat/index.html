@@ -16,9 +16,6 @@
       data-guid="d3201d49-c897-490f-91ac-7ca9382cf731"
     ></div>
     <script>
-      console.log("test loaded");
-
-
       var i = {
         t: function (t) {
           var e = "https://media.imi.chat/widget/js/imichatinit.js";
@@ -69,23 +66,30 @@
       };
       i.t(function (t) {});
 
-      imichatwidget.on("imichat-widget:ready", function(appId){
-        console.log("widget loaded");
+      let incr = 0;
+      const wait_code = setInterval(() => {
+        console.log("waiting");
+        incr++;
+        if (incr > 3) clearInterval(wait_code);
+      }, 1000);
+      
+      // imichatwidget.on("imichat-widget:ready", function(appId){
+      //   console.log("widget loaded");
 
-        imichatwidget.show();
+      //   imichatwidget.show();
 
-        const data = {
-          "custom_chat_fields": {
-            "name": "Anthony Holloway",
-            "email": "avholloway@gmail.com"
-          }
-        };
+      //   const data = {
+      //     "custom_chat_fields": {
+      //       "name": "Anthony Holloway",
+      //       "email": "avholloway@gmail.com"
+      //     }
+      //   };
 
-        imichatwidget.init(data, function(response) {
-          console.log("inside of imi chat init function");
-        });
+      //   imichatwidget.init(data, function(response) {
+      //     console.log("inside of imi chat init function");
+      //   });
 
-      });
+      // });
     </script>
   </body>
 </html>
