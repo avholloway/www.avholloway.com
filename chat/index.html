@@ -93,6 +93,8 @@
           }
         };
 
+        console.log("data: %o", data);
+
         // send the data as JSON string
         imichatwidget.init(JSON.stringify(data), () => {console.log({"wait_code": "data sent!"})});
         console.groupEnd();
