@@ -69,12 +69,15 @@
       // custom code addition to pass website data to webex connect flow
       // setup a recurring check every 250ms to know when we're ready to send data
       const wait_code = setInterval(() => {
+        console.log("%cChecking for imichatwidget...", "color: coral; font-weight: bold;");
 
         // if chat widget global object isn't present, continue to wait longer
         if (typeof imichatwidget === 'undefined') return;
 
         // chat widget global object is now found, so we stop waiting for it
         clearInterval(wait_code);
+
+        console.log("%cFound imichatwidget!", "color: coral; font-weight: bold;");
 
         // construct the data we want to send the chat widget
         const data = {
@@ -85,7 +88,9 @@
         };
 
         // attach the data as JSON string
-        imichatwidget.init(JSON.stringify(data), () => {});
+        imichatwidget.init(JSON.stringify(data), () => {
+          console.log("%cData attached!", "color: coral; font-weight: bold;");
+        });
 
       }, 250);
       
