@@ -17,6 +17,8 @@
     ></div>
     <script>
       console.log("test loaded");
+
+
       var i = {
         t: function (t) {
           var e = "https://media.imi.chat/widget/js/imichatinit.js";
@@ -67,19 +69,23 @@
       };
       i.t(function (t) {});
 
+      imichatwidget.on("imichat-widget:ready", function(appId){
+        console.log("widget loaded");
 
-      const data = {
-        "custom_chat_fields": {
-          "name": "Anthony Holloway",
-          "email": "avholloway@gmail.com"
-        }
-      };
-      setTimeout(function () {
-        console.log("my custom timeout area fired");
+        imichatwidget.show();
+
+        const data = {
+          "custom_chat_fields": {
+            "name": "Anthony Holloway",
+            "email": "avholloway@gmail.com"
+          }
+        };
+
         imichatwidget.init(data, function(response) {
           console.log("inside of imi chat init function");
         });
-      }, 2000);
+
+      });
     </script>
   </body>
 </html>
