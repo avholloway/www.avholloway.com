@@ -66,30 +66,31 @@
       };
       i.t(function (t) {});
 
-      let incr = 0;
       const wait_code = setInterval(() => {
-        console.log("waiting");
-        incr++;
-        if (incr > 3) clearInterval(wait_code);
-      }, 1000);
+        console.log("waiting for imichatwidget to load...");
+
+        if (!imichatwidget) return;
+        clearInterval(wait_code);
+
+        imichatwidget.on("imichat-widget:ready", function(appId){
+          console.log("widget loaded");
+
+          const data = {
+            "custom_chat_fields": {
+              "name": "Anthony Holloway",
+              "email": "avholloway@gmail.com"
+            }
+          };
+
+          imichatwidget.init(data, function(response) {
+            console.log("inside of imi chat init function");
+            console.log({"response": response});
+          });
+
+        });
+
+      }, 500);
       
-      // imichatwidget.on("imichat-widget:ready", function(appId){
-      //   console.log("widget loaded");
-
-      //   imichatwidget.show();
-
-      //   const data = {
-      //     "custom_chat_fields": {
-      //       "name": "Anthony Holloway",
-      //       "email": "avholloway@gmail.com"
-      //     }
-      //   };
-
-      //   imichatwidget.init(data, function(response) {
-      //     console.log("inside of imi chat init function");
-      //   });
-
-      // });
     </script>
   </body>
 </html>
