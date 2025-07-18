@@ -77,7 +77,7 @@
         clearInterval(wait_code);
 
         // construct the data we want to send the chat widget
-        const payload = {
+        const data = {
           "custom_chat_fields": {
             "name": "Anthony Holloway",
             "email": "anhollow@cisco.com"
@@ -85,7 +85,7 @@
         };
 
         // send the data as JSON string
-        imichatwidget.init(JSON.stringify(payload), () => {});
+        imichatwidget.init(JSON.stringify(data), () => {});
 
       }, 250);
       
