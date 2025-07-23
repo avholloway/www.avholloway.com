@@ -10,9 +10,9 @@
     <h1>Webex Contact Center Live Chat</h1>
     <p>I am just testing things out, passing data into the widget.</p>
     <div>
-      Name: <input name="customer_name" /><br />
-      Email: <input name="customer_email" /><br />
-      <button>Update</button>
+      Name: <input id="customer_name" name="customer_name" /><br />
+      Email: <input id="customer_email" name="customer_email" /><br />
+      <button id="update_info" disabled>Update</button>
     </div>
     <div
       id="divicw"
@@ -84,17 +84,26 @@
 
         console.log("%cFound imichatwidget!", "color: coral; font-weight: bold;");
 
-        // construct the data we want to send the chat widget
-        const data = {
-          "custom_chat_fields": {
-            "name": "Anthony Holloway",
-            "email": "anhollow@cisco.com"
-          }
-        };
+        // setup the form and construct the data we want to send the chat widget
+        const update_info = document.getElementById("update_info");
 
-        // attach the data as JSON string
-        imichatwidget.init(JSON.stringify(data), () => {
-          console.log("%cData attached!", "color: coral; font-weight: bold;");
+        update_info.disabled = false;
+
+        update_info.addEventListener("click", () => {
+          const customer_name = document.getElementById("customer_name");
+          const customer_email = document.getElementById("customer_email");
+
+          const data = {
+            "custom_chat_fields": {
+              "name": customer_name.value,
+              "email": customer_email.value
+            }
+          };
+
+          // attach the data as JSON string
+          imichatwidget.init(JSON.stringify(data), () => {
+            console.log("%cData attached!", "color: coral; font-weight: bold;");
+          });
         });
 
       }, 250);
