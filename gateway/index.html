@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html class="no-js" lang="">
+  <head>
+    <meta charset="utf-8" />
+    <title>Anthony Holloway</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link rel="manifest" href="../site.webmanifest" />
+    <link rel="apple-touch-icon" href="../icon.png" />
+    <!-- Place favicon.ico in the root directory -->
+
+    <link rel="stylesheet" href="css/normalize.css" />
+    <link rel="stylesheet" href="css/main.css" />
+
+    <meta name="theme-color" content="#fafafa" />
+  </head>
+
+  <body>
+    <!--[if IE]>
+      <p class="browserupgrade">
+        You are using an <strong>outdated</strong> browser. Please
+        <a href="https://browsehappy.com/">upgrade your browser</a> to improve
+        your experience and security.
+      </p>
+    <![endif]-->
+
+    <!-- Add your site or application content here -->
+    <div class="gridcontainer">
+      <div class="title">
+        <h1>Webex Calling Local Gateway</h1>
+        <p class="subtitle">
+          By
+          <a
+            href="https://community.cisco.com/t5/user/viewprofilepage/user-id/325713"
+            >Anthony Holloway</a
+          >
+        </p>
+      </div>
+
+      <div class="promotion">
+        <a href="https://www.buymeacoffee.com/avholloway"
+          ><img
+            src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=&slug=avholloway&button_colour=FFDD00&font_colour=000000&font_family=Cookie&outline_colour=000000&coffee_colour=ffffff"
+        /></a>
+      </div>
+
+      <div class="webex-input">
+        <h2>Webex Trunk Details</h2>
+      </div>
+
+      <div class="input-col1">
+        Trunk Group OTG/DTG:<br />
+        <input id="otgdtg" /><br /><br />
+
+        Outbound Proxy:<br />
+        <input id="proxy" /><br /><br />
+
+        Registrar Domain:<br />
+        <input id="registrar" />
+      </div>
+      <div class="input-col2">
+        Line/Port:<br />
+        <input id="lineport" /><br /><br />
+
+        Username:<br />
+        <input id="username" /><br /><br />
+
+        Password:<br />
+        <input id="password" />
+      </div>
+
+      <div class="cucm-input">
+        <h2>CUCM Trunk Details</h2>
+        CUCM Primary IP:<br />
+        <input id="cucm1" /><br /><br />
+
+        CUCM Secondary IP:<br />
+        <input id="cucm2" /><br /><br />
+      </div>
+
+      <div class="generate">
+        <button onclick="handler_generate()"">Generate</button>
+      </div>
+
+      <div class="output">
+        <h2>Configuration</h2>
+        <textarea id="output" rows="50"></textarea>
+      </div>
+
+      <div class="footer">
+        <p class="footer">Version 1 - 2025-07-26</p>
+        <p>Limitations:</p>
+        <ul>
+          <li>
+            This template is designed for two CUCM servers, please use
+            appropriate CMG on Trunk and RL to match.
+          </li>
+        </ul>
+      </div>
+    </div>
+    <script src="js/vendor/modernizr-3.7.1.min.js"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.min.js"
+      integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      window.jQuery ||
+        document.write(
+          '<script src="js/vendor/jquery-3.3.1.min.js"><\/script>'
+        );
+    </script>
+    <script src="js/plugins.js"></script>
+    <script src="js/main.js"></script>
+    <div id="pattern-output"></div>
+    <script>
+      window.ga = function () {
+        ga.q.push(arguments);
+      };
+      ga.q = [];
+      ga.l = +new Date();
+      ga("create", "UA-78058802-2", "auto");
+      ga("set", "transport", "beacon");
+      ga("send", "pageview");
+    </script>
+    <script
+      src="https://www.google-analytics.com/analytics.js"
+      async
+      defer
+    ></script>
+  </body>
+</html>
