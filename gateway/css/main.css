@@ -154,6 +154,11 @@ input {
   text-align: right;
 }
 
+.generate button {
+  position: relative;
+  z-index: 99999;
+}
+
 .output {
   grid-row-start: 5;
   grid-column-start: 2;
