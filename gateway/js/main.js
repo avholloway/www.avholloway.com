@@ -70,7 +70,7 @@ voice class sip-profiles 1000
  rule 11 request ANY sip-header SIP-Req-URI modify "sips:" "sip:"
  rule 12 request ANY sip-header To modify "<sips:" "<sip:"
  rule 13 request ANY sip-header From modify "<sips:" "<sip:"
- rule 14 request ANY sip-header Contact modify "<sips:(.*)>" "<sip:\1;transport=tls>" 
+ rule 14 request ANY sip-header Contact modify "<sips:(.*)>" "<sip:\\1;transport=tls>" 
  rule 15 response ANY sip-header To modify "<sips:" "<sip:"
  rule 16 response ANY sip-header From modify "<sips:" "<sip:"
  rule 17 response ANY sip-header Contact modify "<sips:" "<sip:"
