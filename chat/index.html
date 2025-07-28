@@ -12,7 +12,7 @@
     <div>
       Name: <input id="customer_name" name="customer_name" /><br />
       Email: <input id="customer_email" name="customer_email" /><br />
-      <button id="update_info" disabled>Update</button>
+      <button id="update_info" disabled>Update</button> <span id="update_status" style="color: red; display: none;">Data attached!</span>
     </div>
     <div
       id="divicw"
@@ -103,6 +103,9 @@
           // attach the data as JSON string
           imichatwidget.init(JSON.stringify(data), () => {
             console.log("%cData attached!", "color: coral; font-weight: bold;");
+            const status = document.getElementById("update_status");
+            status.style.display = "block";
+            setTimeout((status) => {status.style.display = "none"}, 2000);
           });
         });
 
