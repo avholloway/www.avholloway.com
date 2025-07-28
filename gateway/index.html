@@ -89,7 +89,24 @@
       </div>
 
       <div class="footer">
-        <p class="footer">Version 1 - 2025-07-26</p>
+        <p>Version 1 - 2025-07-26</p>
+        <p>Information:</p>
+        <ul>
+          <li><a href="https://help.webex.com/en-us/article/jr1i3r/Configure-Local-Gateway-on-Cisco-IOS-XE-for-Webex-Calling" target="_blank" >Official Guide</a></li>
+          <li>Numbering convention for dial-peers and the like:
+            <ul>
+              <li>Four digit numbers</li>
+              <li>First digit is the leg; Webex is 1 and CUCM is 2</li>
+              <li>Second digit is the direction; Incoming is 1 and Outgoing is 2</li>
+              <li>Next two digits not used in this template
+                <ul>
+                  <li>Could be used if you switch away from DPGs and use destination pattern</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>Destination pattern is ABC123 because we need the command, but the value is ignored</li>
+        </ul>
         <p>Limitations:</p>
         <ul>
           <li>
