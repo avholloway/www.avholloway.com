@@ -103,9 +103,8 @@
           // attach the data as JSON string
           imichatwidget.init(JSON.stringify(data), () => {
             console.log("%cData attached!", "color: coral; font-weight: bold;");
-            const status = document.getElementById("update_status");
-            status.style.display = "block";
-            setTimeout((status) => {status.style.display = "none"}, 2000);
+            document.getElementById("update_status").style.display = "block";
+            setTimeout(() => {document.getElementById("update_status").style.display = "none"}, 2000);
           });
         });
 
