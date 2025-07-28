@@ -183,16 +183,25 @@ voice class dpg 2200
  dial-peer 2200 preference 1
 !`;
 
+  const otgdtg = $("#otgdtg").val() || "{{WxCTrunkOTGDTG}}";
+  const proxy = $("#proxy").val() || "{{WxCTrunkOutboundProxy}}";
+  const registrar = $("#registrar").val() || "{{WxCTrunkRegistrarDomain}}";
+  const lineport = $("#lineport").val() || "{{WxCTrunkLineAndPort}}";
+  const username = $("#username").val() || "{{WxCTrunkUsername}}";
+  const password = $("#password").val() || "{{WxCTrunkPassword}}";
+  const cucm1 = $("#cucm1").val() || "{{OnPremCallControlIPAddress1}}";
+  const cucm2 = $("#cucm2").val() || "{{OnPremCallControlIPAddress2}}";
+  
   // replace the fields in the template
   const config = template
-              .replaceAll("{{WxCTrunkOTGDTG}}", $("#otgdtg").val())
-              .replaceAll("{{WxCTrunkOutboundProxy}}", $("#proxy").val())
-              .replaceAll("{{WxCTrunkRegistrarDomain}}", $("#registrar").val())
-              .replaceAll("{{WxCTrunkLineAndPort}}", $("#lineport").val())
-              .replaceAll("{{WxCTrunkUsername}}", $("#username").val())
-              .replaceAll("{{WxCTrunkPassword}}", $("#password").val())
-              .replaceAll("{{OnPremCallControlIPAddress1}}", $("#cucm1").val())
-              .replaceAll("{{OnPremCallControlIPAddress2}}", $("#cucm2").val());
+              .replaceAll("{{WxCTrunkOTGDTG}}", otgdtg)
+              .replaceAll("{{WxCTrunkOutboundProxy}}", proxy)
+              .replaceAll("{{WxCTrunkRegistrarDomain}}", registrar)
+              .replaceAll("{{WxCTrunkLineAndPort}}", lineport)
+              .replaceAll("{{WxCTrunkUsername}}", username)
+              .replaceAll("{{WxCTrunkPassword}}", password)
+              .replaceAll("{{OnPremCallControlIPAddress1}}", cucm1)
+              .replaceAll("{{OnPremCallControlIPAddress2}}", cucm2);
 
   // show the config in the output
   $output.val(config);
