@@ -28,7 +28,7 @@
     <!-- Add your site or application content here -->
     <div class="gridcontainer">
       <div class="title">
-        <h1>Webex Calling Local Gateway</h1>
+        <h1>Webex Calling Local Registration Based Gateway Template</h1>
         <p class="subtitle">
           By
           <a
@@ -38,49 +38,53 @@
         </p>
       </div>
 
-      <div class="promotion">
-        <a href="https://www.buymeacoffee.com/avholloway"
-          ><img
-            src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=&slug=avholloway&button_colour=FFDD00&font_colour=000000&font_family=Cookie&outline_colour=000000&coffee_colour=ffffff"
-        /></a>
-      </div>
+      <div class="notes">📝 Notes Down Below 👇</div>
 
       <div class="webex-input">
         <h2>Webex Trunk Details</h2>
       </div>
 
-      <div class="input-col1">
+      <div class="webex-input-otgdtg">
         Trunk Group OTG/DTG:<br />
-        <input id="otgdtg" /><br /><br />
-
+        <input id="otgdtg" />
+      </div>
+      <div class="webex-input-proxy">
         Outbound Proxy:<br />
-        <input id="proxy" /><br /><br />
-
+        <input id="proxy" />
+      </div>
+      <div class="webex-input-registrar">
         Registrar Domain:<br />
         <input id="registrar" />
       </div>
-      <div class="input-col2">
+
+      <div class="webex-input-lineport">
         Line/Port:<br />
-        <input id="lineport" /><br /><br />
-
+        <input id="lineport" />
+      </div>
+      <div class="webex-input-username">
         Username:<br />
-        <input id="username" /><br /><br />
-
+        <input id="username" />
+      </div>
+      <div class="webex-input-password">
         Password:<br />
         <input id="password" />
       </div>
 
       <div class="cucm-input">
         <h2>CUCM Trunk Details</h2>
-        CUCM Primary IP:<br />
-        <input id="cucm1" /><br /><br />
+      </div>
 
+      <div class="cucm-input-cucm1">
+        CUCM Primary IP:<br />
+        <input id="cucm1" />
+      </div>
+      <div class="cucm-input-cucm2">
         CUCM Secondary IP:<br />
-        <input id="cucm2" /><br /><br />
+        <input id="cucm2" />
       </div>
 
       <div class="generate">
-        <button onclick="handler_generate()"">Generate</button>
+        <button onclick="handler_generate()">Generate</button>
       </div>
 
       <div class="output">
@@ -88,31 +92,67 @@
         <textarea id="output" rows="50"></textarea>
       </div>
 
-      <div class="footer">
-        <p>Version 1 - 2025-07-26</p>
-        <p>Information:</p>
+      <div class="footer" id="notes">
+        <p>Version 1 - 2025-08-01</p>
+        <p>Notes:</p>
         <ul>
-          <li><a href="https://help.webex.com/en-us/article/jr1i3r/Configure-Local-Gateway-on-Cisco-IOS-XE-for-Webex-Calling" target="_blank" >Official Guide</a></li>
-          <li>Numbering convention for dial-peers and the like:
+          <li>
+            <a
+              href="https://help.webex.com/en-us/article/jr1i3r/Configure-Local-Gateway-on-Cisco-IOS-XE-for-Webex-Calling"
+              target="_blank"
+              >Official Guide</a
+            >
+          </li>
+          <li>
+            <a
+              href=https://www.ciscolive.com/c/dam/r/ciscolive/emea/docs/2024/pdf/BRKCOL-2812.pdf"
+              target="_blank"
+              >2024 Cisco Live Session</a
+            >
+          </li>
+          <li>UCK9 and SecurityK9 licenses required</li>
+          <li>Template assumes a single interface; hence no bind commands.  If you want multiple interfaces, you may need to consider your binds.</li>
+          <li>
+            Numbering convention for dial-peers and the like:
             <ul>
-              <li>Four digit numbers</li>
-              <li>First digit is the leg; Webex is 1 and CUCM is 2</li>
-              <li>Second digit is the direction; Incoming is 1 and Outgoing is 2</li>
-              <li>Next two digits not used in this template
+              <li>Four digit numbers XYZZ</li>
+              <li>First digit "X" is the leg; 1 = Webex, 2 = CUCM</li>
+              <li>
+                Second digit "Y" is the direction; 0 = Agnostic, 1 = Incoming, 2 = Outgoing
+              </li>
+              <li>
+                Next two digits "ZZ" are not used in this template
                 <ul>
-                  <li>Could be used if you switch away from DPGs and use destination pattern</li>
+                  <li>
+                    Could be used if you switched away from DPGs and use
+                    destination patterns instead
+                  </li>
                 </ul>
               </li>
             </ul>
           </li>
-          <li>Destination pattern is ABC123 because we need the command, but the value is ignored</li>
           <li>
-            This template is designed for two CUCM servers, please use
-            appropriate CMG on Trunk and RL to match.
+            Destination pattern is ABC123 because we need the command, but the
+            value is ignored
+          </li>
+          <li>
+            This template is designed for two CUCM servers, but feel free to adapt it for more servers or for another PBX (e.g., Avaya)
+          </li>
+          <li>
+            This template is designed for a vanilla CUCM SIP trunk, but do consider the following:
+            <ul><li>Device Pool and therefore CMG, Location and Region</li><li>Inbound CSS</li><li>Non-secure SIP Trunk Security Profile</li><li>SIP Profile with Early Offer Best Effort and OPTIONS</li></ul>
           </li>
         </ul>
       </div>
+
+      <div class="promotion">
+        <a href="https://www.buymeacoffee.com/avholloway"
+          ><img
+            src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=&slug=avholloway&button_colour=FFDD00&font_colour=000000&font_family=Cookie&outline_colour=000000&coffee_colour=ffffff"
+        /></a>
+      </div>
     </div>
+
     <script src="js/vendor/modernizr-3.7.1.min.js"></script>
     <script
       src="https://code.jquery.com/jquery-3.3.1.min.js"
