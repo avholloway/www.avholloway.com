@@ -126,9 +126,6 @@
         imichatwidget.init(JSON.stringify(data), () => {
           console.log("%cData attached!", "color: coral; font-weight: bold;");
           document.getElementById("update_status").style.display = "block";
-          setTimeout(() => {
-            document.getElementById("update_status").style.display = "none";
-          }, 2000);
         });
       }, 250);
     </script>
