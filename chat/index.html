@@ -86,6 +86,11 @@
         // if chat widget global object isn't present, continue to wait longer
         if (typeof imichatwidget === "undefined") return;
 
+        console.log(
+          "%cFound imichatwidget, checking for on() function...",
+          "color: coral; font-weight: bold;"
+        );
+
         // if chat widget on function isn't present, continue to wait longer
         if (typeof imichatwidget.on === "undefined") return;
 
@@ -93,7 +98,7 @@
         clearInterval(wait_code);
 
         console.log(
-          "%cFound imichatwidget, and on() is ready to go!",
+          "%cFound imichatwidget and on(). Ready to go!",
           "color: coral; font-weight: bold;"
         );
 
@@ -121,14 +126,14 @@
             "addison@holloway.com",
           ][random_person];
 
-          console.log(`%c${data}`, "color: coral; font-weight: bold;");
-
           const data = JSON.stringify({
             custom_chat_fields: {
               name: customer_name.value,
               email: customer_email.value,
             },
           });
+
+          console.log(`%c${data}`, "color: coral; font-weight: bold;");
 
           // attach the data
           imichatwidget.init(data, () => {
