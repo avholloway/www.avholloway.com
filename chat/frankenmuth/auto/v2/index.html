@@ -140,6 +140,11 @@
           },
         };
 
+        console.log(
+          `%c${data}`,
+          "color: coral; font-weight: bold;"
+        );
+
         // attach the data as JSON string
         imichatwidget.init(JSON.stringify(data), () => {
           console.log("%cData attached!", "color: coral; font-weight: bold;");
