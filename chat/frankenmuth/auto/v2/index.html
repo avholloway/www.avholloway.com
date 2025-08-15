@@ -104,51 +104,55 @@
         // if chat widget global object isn't present, continue to wait longer
         if (typeof imichatwidget === "undefined") return;
 
-        // if chat widget init function isn't present, continue to wait longer
-        if (typeof imichatwidget.init === "undefined") return;
+        // if chat widget on function isn't present, continue to wait longer
+        if (typeof imichatwidget.on === "undefined") return;
 
         // chat widget global object is now found, so we stop waiting for it
         clearInterval(wait_code);
 
         console.log(
-          "%cFound imichatwidget, and init() is ready to go!",
+          "%cFound imichatwidget, and on() is ready to go!",
           "color: coral; font-weight: bold;"
         );
 
-        const customer_name = document.getElementById("customer_name");
-        const customer_email = document.getElementById("customer_email");
+        imichatwidget.on("imichat-widget:ready", () => {
+          console.log(
+            "%cimichatwidget.on(ready) has fired! Loading up data!",
+            "color: coral; font-weight: bold;"
+          );
 
-        const random_person = Math.floor(Math.random() * 4);
-        customer_name.value = [
-          "Anthony Holloway",
-          "Elizabeth Holloway",
-          "Ethan Holloway",
-          "Addison Holloway",
-        ][random_person];
+          const customer_name = document.getElementById("customer_name");
+          const customer_email = document.getElementById("customer_email");
 
-        customer_email.value = [
-          "anthony@holloway.com",
-          "elizabeth@holloway.com",
-          "ethan@holloway.com",
-          "addison@holloway.com",
-        ][random_person];
+          const random_person = Math.floor(Math.random() * 4);
+          customer_name.value = [
+            "Anthony Holloway",
+            "Elizabeth Holloway",
+            "Ethan Holloway",
+            "Addison Holloway",
+          ][random_person];
 
-        const data = {
-          custom_chat_fields: {
-            name: customer_name.value,
-            email: customer_email.value,
-          },
-        };
+          customer_email.value = [
+            "anthony@holloway.com",
+            "elizabeth@holloway.com",
+            "ethan@holloway.com",
+            "addison@holloway.com",
+          ][random_person];
 
-        console.log(
-          `%c${data}`,
-          "color: coral; font-weight: bold;"
-        );
+          const data = {
+            custom_chat_fields: {
+              name: customer_name.value,
+              email: customer_email.value,
+            },
+          };
 
-        // attach the data as JSON string
-        imichatwidget.init(JSON.stringify(data), () => {
-          console.log("%cData attached!", "color: coral; font-weight: bold;");
-          document.getElementById("update_status").style.display = "block";
+          console.log(`%c${data}`, "color: coral; font-weight: bold;");
+
+          // attach the data as JSON string
+          imichatwidget.init(JSON.stringify(data), () => {
+            console.log("%cData attached!", "color: coral; font-weight: bold;");
+            document.getElementById("update_status").style.display = "block";
+          });
         });
       }, 250);
     </script>
