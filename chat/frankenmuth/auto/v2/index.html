@@ -4,10 +4,10 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Webex Contact Center Live Chat</title>
+    <title>Webex Contact Center Live Chat v2</title>
   </head>
   <body>
-    <h1>Webex Contact Center Live Chat</h1>
+    <h1>Webex Contact Center Live Chat v2</h1>
     <div>
       How to use:
       <ul>
@@ -101,6 +101,9 @@
 
         // if chat widget global object isn't present, continue to wait longer
         if (typeof imichatwidget === "undefined") return;
+
+        // if chat widget init function isn't present, continue to wait longer
+        if (typeof imichatwidget.init === "undefined") return;
 
         // chat widget global object is now found, so we stop waiting for it
         clearInterval(wait_code);
