@@ -12,8 +12,9 @@
     <div>
       Name: <input id="customer_name" name="customer_name" /><br />
       Email: <input id="customer_email" name="customer_email" /><br />
-      <button id="update_info" disabled>Update</button>
-      <span id="update_status" style="color: red; display: none"
+      <span
+        id="update_status"
+        style="color: coral; font-weight: bold; display: none"
         >Data attached!</span
       >
     </div>
@@ -102,51 +103,41 @@
             "color: coral; font-weight: bold;"
           );
 
-          const update_data = () => {
-            const customer_name = document.getElementById("customer_name");
-            const customer_email = document.getElementById("customer_email");
+          const customer_name = document.getElementById("customer_name");
+          const customer_email = document.getElementById("customer_email");
 
-            const random_person = Math.floor(Math.random() * 4);
-            customer_name.value = [
-              "Anthony Holloway",
-              "Elizabeth Holloway",
-              "Ethan Holloway",
-              "Addison Holloway",
-            ][random_person];
+          const random_person = Math.floor(Math.random() * 4);
+          customer_name.value = [
+            "Anthony Holloway",
+            "Elizabeth Holloway",
+            "Ethan Holloway",
+            "Addison Holloway",
+          ][random_person];
 
-            customer_email.value = [
-              "anthony@holloway.com",
-              "elizabeth@holloway.com",
-              "ethan@holloway.com",
-              "addison@holloway.com",
-            ][random_person];
+          customer_email.value = [
+            "anthony@holloway.com",
+            "elizabeth@holloway.com",
+            "ethan@holloway.com",
+            "addison@holloway.com",
+          ][random_person];
 
-            console.log(`%c${data}`, "color: coral; font-weight: bold;");
+          console.log(`%c${data}`, "color: coral; font-weight: bold;");
 
-            const data = JSON.stringify({
-              custom_chat_fields: {
-                name: customer_name.value,
-                email: customer_email.value,
-              },
-            });
+          const data = JSON.stringify({
+            custom_chat_fields: {
+              name: customer_name.value,
+              email: customer_email.value,
+            },
+          });
 
-            // attach the data
-            imichatwidget.init(data, () => {
-              console.log(
-                "%cData attached!",
-                "color: coral; font-weight: bold;"
-              );
-              document.getElementById("update_status").style.display = "block";
-              setTimeout(() => {
-                document.getElementById("update_status").style.display = "none";
-              }, 2000);
-            });
-          };
-
-          const update_info = document.getElementById("update_info");
-          update_info.addEventListener("click", update_data);
-          update_info.disabled = false;
-          update_data();
+          // attach the data
+          imichatwidget.init(data, () => {
+            console.log("%cData attached!", "color: coral; font-weight: bold;");
+            document.getElementById("update_status").style.display = "block";
+            setTimeout(() => {
+              document.getElementById("update_status").style.display = "none";
+            }, 2000);
+          });
         });
       }, 250);
     </script>
