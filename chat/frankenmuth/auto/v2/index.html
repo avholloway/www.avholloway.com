@@ -139,17 +139,17 @@
             "addison@holloway.com",
           ][random_person];
 
-          const data = {
+          const data = JSON.stringify({
             custom_chat_fields: {
               name: customer_name.value,
               email: customer_email.value,
             },
-          };
+          });
 
           console.log(`%c${data}`, "color: coral; font-weight: bold;");
 
           // attach the data as JSON string
-          imichatwidget.init(JSON.stringify(data), () => {
+          imichatwidget.init(data, () => {
             console.log("%cData attached!", "color: coral; font-weight: bold;");
             document.getElementById("update_status").style.display = "block";
           });
