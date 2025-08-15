@@ -30,7 +30,9 @@
     <div>
       Name: <input id="customer_name" name="customer_name" /><br />
       Email: <input id="customer_email" name="customer_email" /><br />
-      <span id="update_status" style="color: coral; font-weight: bold; display: none"
+      <span
+        id="update_status"
+        style="color: coral; font-weight: bold; display: none"
         >Data attached!</span
       >
     </div>
@@ -107,16 +109,29 @@
 
         // chat widget global object is now found, so we stop waiting for it
         clearInterval(wait_code);
+
         console.log(
-          "%cFound imichatwidget!",
+          "%cFound imichatwidget, and init() is ready to go!",
           "color: coral; font-weight: bold;"
         );
 
         const customer_name = document.getElementById("customer_name");
         const customer_email = document.getElementById("customer_email");
 
-        customer_name.value = "Anthony Holloway";
-        customer_email.value = "anhollow@cisco.com";
+        const random_person = Math.floor(Math.random() * 4);
+        customer_name.value = [
+          "Anthony Holloway",
+          "Elizabeth Holloway",
+          "Ethan Holloway",
+          "Addison Holloway",
+        ][random_person];
+
+        customer_email.value = [
+          "anthony@holloway.com",
+          "elizabeth@holloway.com",
+          "ethan@holloway.com",
+          "addison@holloway.com",
+        ][random_person];
 
         const data = {
           custom_chat_fields: {
