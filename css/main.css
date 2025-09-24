@@ -103,21 +103,16 @@ textarea {
   grid-template-columns: 1fr 1fr 1fr 1fr;
 }
 
-legend {
-  font-size: 150%;
-}
-
-textarea {
-  width: 80%;
-  height: auto;
-}
-
 .title {
   grid-column: 2 / span 2;
 }
 
 .subtitle {
   margin-top: -1em;
+}
+
+.body {
+  grid-column: 2 / span 2;
 }
 
 * {
