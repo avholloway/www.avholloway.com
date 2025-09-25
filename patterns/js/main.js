@@ -1,8 +1,9 @@
+let pattern_output_list;
+
 // on page load
 (function () {
   // set the active feature
   switch_feature("summarize");
-  $("#quoted_field").hide();
 })();
 
 // the feature has switched
@@ -28,33 +29,53 @@ function handler_copy() {
   return false;
 }
 
-// the csv checkbox was checked
-function handler_csv(quoted = false) {
-  const $output = $("#output");
-  let list = $output.val();
-  const csv_enabled = $("#csv").is(":checked");
-  const $quoted_field = $("#quoted_field");
-  if ($output.val() === "") return;
-  if (csv_enabled) {
-    $quoted_field.show();
-    if (list.includes(",")) {
-      list = list.split(",");
-    } else {
-      list = list.split("\n");
-    }
-    if (quoted) {
-      list = list.map((s) => JSON.stringify(s));
-      list = list.join(",");
-    } else {
-      list = list.join(",");
-      if (list.includes('"')) list = list.replaceAll('"', "");
-    }
-  } else {
-    $("#quoted").prop("checked", false);
-    $quoted_field.hide();
-    list = list.split(",").join("\n");
-    if (list.includes('"')) list = list.replaceAll('"', "");
+function handler_output_format() {
+  const $format = $("#output_format");
+  switch ($format.val()) {
+    case "normal":
+      list_to_normal();
+      break;
+    case "csv":
+      list_to_csv();
+      break;
+    case "csv_quoted":
+      list_to_csv_quoted();
+      break;
+    case "e164_map":
+      list_to_e164_map();
+      break;
+    default:
+      return;
   }
+}
+
+function list_to_normal() {
+  if (pattern_output_list.length === 0) return;
+  const $output = $("#output");
+  let list = pattern_output_list.join("\n");
+  $output.val(list);
+}
+
+function list_to_csv() {
+  if (pattern_output_list.length < 2) return;
+  const $output = $("#output");
+  let list = pattern_output_list.join(",");
+  $output.val(list);
+}
+
+function list_to_csv_quoted() {
+  if (pattern_output_list.length < 2) return;
+  const $output = $("#output");
+  let list = pattern_output_list.map((e) => `"${e}"`);
+  list = list.join(",");
+  $output.val(list);
+}
+
+function list_to_e164_map() {
+  if (pattern_output_list.length === 0) return;
+  const $output = $("#output");
+  let list = pattern_output_list.map((e) => `e164 ${e}$`);
+  list = list.join("\n");
   $output.val(list);
 }
 
@@ -120,7 +141,8 @@ function handler_summarize() {
   }
 
   // Summarize the patterns and return the patterns; one per line
-  $output.val(summarize(list, is_e123).join("\n"));
+  pattern_output_list = summarize(list, is_e123);
+  $output.val(pattern_output_list.join("\n"));
 
   return;
 }
@@ -201,7 +223,8 @@ function handler_expander() {
   }
 
   // results are ready
-  $output.val(results.join("\n"));
+  pattern_output_list = results;
+  $output.val(pattern_output_list.join("\n"));
 }
 
 /*

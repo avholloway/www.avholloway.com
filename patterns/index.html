@@ -81,11 +81,12 @@
           <legend>Output</legend>
           <p>
             <button onclick="handler_copy()">Copy Output</button>
-            <input type="checkbox" id="csv" onclick="handler_csv()" /> CSV
-            <span id="quoted_field"
-              ><input type="checkbox" id="quoted" onclick="handler_quoted()" />
-              Quoted</span
-            >
+            <select onchange="handler_output_format()" name="output_format" id="output_format">
+              <option value="normal" selected="selected">Normal List</option>
+              <option value="csv">CSV</option>
+              <option value="csv_quoted">CSV and Quoted</option>
+              <option value="e164_map">E164 Pattern Map</option>
+            </select>
           </p>
           <textarea id="output" rows="30"></textarea>
         </fieldset>
@@ -147,7 +148,7 @@
       <div></div>
       <div></div>
       <div></div>
-      <div><p class="footer">Version 6 - 2024-09-04</p></div>
+      <div><p class="footer">Version 7 - 2025-09-25</p></div>
       <div>
         <a href="https://www.buymeacoffee.com/avholloway"
           ><img
