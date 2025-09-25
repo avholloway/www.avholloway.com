@@ -57,14 +57,17 @@ function list_to_normal() {
 }
 
 function list_to_csv() {
-  if (pattern_output_list.length < 2) return;
+  if (pattern_output_list.length < 2) {
+    list_to_normal();
+    return;
+  }
   const $output = $("#output");
   let list = pattern_output_list.join(",");
   $output.val(list);
 }
 
 function list_to_csv_quoted() {
-  if (pattern_output_list.length < 2) return;
+  if (pattern_output_list.length === 0) return;
   const $output = $("#output");
   let list = pattern_output_list.map((e) => `"${e}"`);
   list = list.join(",");
@@ -74,7 +77,7 @@ function list_to_csv_quoted() {
 function list_to_e164_map() {
   if (pattern_output_list.length === 0) return;
   const $output = $("#output");
-  let list = pattern_output_list.map((e) => `e164 ${e.replace(/X/, ".")}$`);
+  let list = pattern_output_list.map((e) => `e164 ${e.replace(/X/gi, ".")}$`);
   list = list.join("\n");
   $output.val(list);
 }
@@ -127,6 +130,10 @@ function handler_summarize() {
   // do we have any patterns to work with?
   if (list.length === 0) return;
 
+  // log our input
+  console.log("Input List:");
+  console.table(list);
+
   // align all patterns to the length of the first pattern
   let pattern_length = list[0].length;
   list = list.filter((e) => e.length === pattern_length);
@@ -142,7 +149,9 @@ function handler_summarize() {
 
   // Summarize the patterns and return the patterns; one per line
   pattern_output_list = summarize(list, is_e123);
-  $output.val(pattern_output_list.join("\n"));
+
+  // show the output in the selected format
+  handler_output_format();
 
   return;
 }
@@ -224,7 +233,13 @@ function handler_expander() {
 
   // results are ready
   pattern_output_list = results;
-  $output.val(pattern_output_list.join("\n"));
+
+  // log our input
+  console.log("Output List:");
+  console.table(results);
+
+  // show the output in the selected format
+  handler_output_format();
 }
 
 /*
@@ -233,6 +248,7 @@ function handler_expander() {
   Output: Array of summarizations for the input phone numbers (E.g., ["100[01]", "200[12]", "3000"])
 */
 function summarize(list, is_e123) {
+  
   // a place to store our soon to be summarized list
   let summarized_list = [];
 
@@ -289,6 +305,10 @@ function summarize(list, is_e123) {
   if (is_e123) {
     summarized_list = summarized_list.map((e) => "+" + e);
   }
+
+  // log our output
+  console.log("Output List:");
+  console.table(summarized_list);
 
   return summarized_list;
 }
