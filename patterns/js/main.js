@@ -74,7 +74,7 @@ function list_to_csv_quoted() {
 function list_to_e164_map() {
   if (pattern_output_list.length === 0) return;
   const $output = $("#output");
-  let list = pattern_output_list.map((e) => `e164 ${e}$`);
+  let list = pattern_output_list.map((e) => `e164 ${e.replace(/X/, ".")}$`);
   list = list.join("\n");
   $output.val(list);
 }
