@@ -98,19 +98,58 @@ textarea {
    Author's custom styles
    ========================================================================== */
 
+:root {
+  font-family: monospace;
+  --bg-dark: hsl(0 0 90%);
+  --bg: hsl(0 0 95%);
+  --bg-light: hsl(0 0 100%);
+  --text: hsl(0 0 5%);
+  --text-muted: hsl(0 0 30%);
+  --border: hsl(0 0 30%);
+  --gradient: linear-gradient: (0deg, var(--bg) 95%, var(--bg-light));
+  --gradient-hover: linear-gradient: (0deg, var(--bg), var(--bg-light));
+  --hightlight: hsl(0 0 100%);
+  --border-card: solid 1px var(--bg);
+  --shadow: 0px 2px 2px hsla(0, 0%, 0%, 0.07), 0px 4px 4px hsla(0, 0%, 0%, 0.15);
+}
+
+body {
+  background: var(--bg-dark);
+  color: var(--text-muted);
+}
+
+h1, h2 {
+  color: var(--text);
+}
+
 .gridcontainer {
   display: grid;
   gap: 1em;
   grid-template-columns: repeat(12, 1fr);
 }
 
-* {
-  font-family: monospace;
+label {
+  color: var(--text);
+}
+
+textarea, input, button {
+  background: var(--bg);
+  color: var(--text);
+  padding: 0.5rem 1rem 0.7rem 1rem;
+  border-radius: 0.5rem;
+  border: var(--border-card);
+  border-top: solid 1px var(--hightlight);
+  box-shadow: var(--shadow);
+}
+
+input:hover, button:hover {
+  background: var(--gradient-hover);
 }
 
 textarea {
   width: 100%;
   height: auto;
+  padding: 1rem 1rem 1rem 1rem;
 }
 
 input {

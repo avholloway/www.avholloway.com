@@ -38,35 +38,35 @@
         </p>
       </div>
 
-      <div class="notes">📝 Notes Down Below 👇</div>
+      <div class="notes"><h2>📝 Notes Down Below 👇</h2></div>
 
       <div class="webex-input">
         <h2>Webex Trunk Details</h2>
       </div>
 
       <div class="webex-input-otgdtg">
-        Trunk Group OTG/DTG:<br />
+        <label for="otgdtg">Trunk Group OTG/DTG</label>
         <input id="otgdtg" />
       </div>
       <div class="webex-input-proxy">
-        Outbound Proxy:<br />
+        <label for="proxy">Outbound Proxy</label>
         <input id="proxy" />
       </div>
       <div class="webex-input-registrar">
-        Registrar Domain:<br />
+        <label for="registrar">Registrar Domain</label>
         <input id="registrar" />
       </div>
 
       <div class="webex-input-lineport">
-        Line/Port:<br />
+        <label for="lineport">Line/Port</label>
         <input id="lineport" />
       </div>
       <div class="webex-input-username">
-        Username:<br />
+        <label for="username">Username</label>
         <input id="username" />
       </div>
       <div class="webex-input-password">
-        Password:<br />
+        <label for="password">Password</label>
         <input id="password" />
       </div>
 
@@ -75,11 +75,11 @@
       </div>
 
       <div class="cucm-input-cucm1">
-        CUCM Primary IP:<br />
+        CUCM Primary IP<br />
         <input id="cucm1" />
       </div>
       <div class="cucm-input-cucm2">
-        CUCM Secondary IP:<br />
+        CUCM Secondary IP<br />
         <input id="cucm2" />
       </div>
 
@@ -93,8 +93,8 @@
       </div>
 
       <div class="footer" id="notes">
-        <p>Version 1 - 2025-08-01</p>
-        <p>Notes:</p>
+        <p>Version 2 - 2025-10-04</p>
+        <h2>Notes</h2>
         <ul>
           <li>
             <a
@@ -105,28 +105,42 @@
           </li>
           <li>
             <a
-              href=https://www.ciscolive.com/c/dam/r/ciscolive/emea/docs/2024/pdf/BRKCOL-2812.pdf"
+              href="https://www.ciscolive.com/c/dam/r/ciscolive/emea/docs/2024/pdf/BRKCOL-2812.pdf"
               target="_blank"
               >2024 Cisco Live Session</a
             >
           </li>
-          <li>You can press generate to see the template without supplying values</li>
-          <li>UCK9 and SecurityK9 licenses required</li>
-          <li>Template assumes a single interface; hence no bind commands.  If you want multiple interfaces, you may need to consider your binds.</li>
           <li>
-            Numbering convention for dial-peers and the like:
+            You can press generate to see the template without supplying values
+          </li>
+          <li>UCK9 and SecurityK9 licenses required</li>
+          <li>
+            Template assumes a single interface; hence no bind commands. If you
+            want multiple interfaces, you may need to consider your binds.
+          </li>
+          <li>
+            I prefer to decouple the WxC subnets in the trust list. If you
+            prefer to define them, please do so.
+          </li>
+          <li>
+            Numbering convention for dial-peers and the like
             <ul>
-              <li>Four digit numbers XYZZ</li>
-              <li>First digit "X" is the leg; 1 = Webex, 2 = CUCM</li>
               <li>
-                Second digit "Y" is the direction; 0 = Agnostic, 1 = Incoming, 2 = Outgoing
-              </li>
-              <li>
-                Next two digits "ZZ" are not used in this template
+                Four digit numbers XYZZ
                 <ul>
+                  <li>First digit "X" is the leg; 1 = Webex, 2 = CUCM</li>
                   <li>
-                    Could be used if you switched away from DPGs and use
-                    destination patterns instead
+                    Second digit "Y" is the direction; 0 = Agnostic, 1 =
+                    Incoming, 2 = Outgoing
+                  </li>
+                  <li>
+                    Next two digits "ZZ" are not used in this template
+                    <ul>
+                      <li>
+                        Could be used if you switched away from DPGs and use
+                        destination patterns instead
+                      </li>
+                    </ul>
                   </li>
                 </ul>
               </li>
@@ -137,11 +151,18 @@
             value is ignored
           </li>
           <li>
-            This template is designed for two CUCM servers, but feel free to adapt it for more servers or for another PBX (e.g., Avaya)
+            This template is designed for two CUCM servers, but feel free to
+            adapt it for more servers or for another PBX (e.g., Avaya)
           </li>
           <li>
-            This template is designed for a vanilla CUCM SIP trunk, but do consider the following:
-            <ul><li>Device Pool and therefore CMG, Location and Region</li><li>Inbound CSS</li><li>Non-secure SIP Trunk Security Profile</li><li>SIP Profile with Early Offer Best Effort and OPTIONS</li></ul>
+            This template is designed for a vanilla CUCM SIP trunk, but do
+            consider the following
+            <ul>
+              <li>Device Pool and therefore CMG, Location and Region</li>
+              <li>Inbound CSS</li>
+              <li>Non-secure SIP Trunk Security Profile</li>
+              <li>SIP Profile with Early Offer Best Effort and OPTIONS</li>
+            </ul>
           </li>
         </ul>
       </div>
