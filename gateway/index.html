@@ -8,8 +8,13 @@
 
     <link rel="manifest" href="../site.webmanifest" />
     <link rel="apple-touch-icon" href="../icon.png" />
-    <!-- Place favicon.ico in the root directory -->
 
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="css/normalize.css" />
     <link rel="stylesheet" href="css/main.css" />
 
@@ -28,20 +33,14 @@
     <!-- Add your site or application content here -->
     <div class="gridcontainer">
       <div class="title">
-        <h1>Webex Calling Registration Based Local Gateway Template</h1>
-        <p class="subtitle">
-          By
-          <a
-            href="https://community.cisco.com/t5/user/viewprofilepage/user-id/325713"
-            >Anthony Holloway</a
-          >
-        </p>
+        <h1>Webex Calling Registration Based Local Gateway Utility</h1>
+        <p class="subtitle">By: Anthony Holloway</p>
       </div>
 
-      <div class="notes"><h2>📝 Notes Down Below 👇</h2></div>
+      <div class="notes"><h2>📝 Notes Below</h2></div>
 
       <div class="webex-input">
-        <h2>Webex Trunk Details</h2>
+        <h2>Webex Details</h2>
       </div>
 
       <div class="webex-input-otgdtg">
@@ -71,7 +70,7 @@
       </div>
 
       <div class="cucm-input">
-        <h2>CUCM Trunk Details</h2>
+        <h2>CUCM Details</h2>
       </div>
 
       <div class="cucm-input-cucm1">
@@ -87,15 +86,20 @@
         <button onclick="handler_generate()">Generate</button>
       </div>
 
-      <div class="output">
-        <h2>Configuration</h2>
-        <textarea id="output" rows="50"></textarea>
+      <div class="config-title">
+        <h2>Configuration Template</h2>
+      </div>
+      <div class="config-output">
+        <pre id="output"></pre>
+      </div>
+      <div class="copy">
+        <button id="copy-button" onclick="handler_copy()">Copy</button>
       </div>
 
       <div class="footer" id="notes">
-        <p>Version 2 - 2025-10-04</p>
         <h2>Notes</h2>
         <ul>
+          <li>Version 3, Modified on 2025-10-06</li>
           <li>
             <a
               href="https://help.webex.com/en-us/article/jr1i3r/Configure-Local-Gateway-on-Cisco-IOS-XE-for-Webex-Calling"
@@ -109,9 +113,6 @@
               target="_blank"
               >2024 Cisco Live Session</a
             >
-          </li>
-          <li>
-            You can press generate to see the template without supplying values
           </li>
           <li>UCK9 and SecurityK9 licenses required</li>
           <li>

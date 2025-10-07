@@ -1,18 +1,4 @@
-// on page load
-(function () {
-  console.log("app loaded");
-})();
-
-// the generate config button was clicked
-function handler_generate() {
-  console.log("generate button clicked");
-
-  // erase the output field
-  const $output = $("#output");
-  $output.val("");
-
-  // define the template
-  const template = `key config-key password-encrypt $encryptkey$
+const template_plain = `key config-key password-encrypt $encryptkey$
 password encryption aes
 crypto pki trustpoint wxctrustpoint
  revocation-check none
@@ -53,7 +39,7 @@ voice class sip-profiles 1000
  rule 16 response ANY sip-header From modify "<sips:" "<sip:"
  rule 17 response ANY sip-header Contact modify "<sips:" "<sip:"
  rule 18 request ANY sip-header P-Asserted-Identity modify "sips:" "sip:"
- rule 21 request ANY sip-header From modify ">" ";otg={{WxCTrunkOTGDTG}}>"
+ rule 21 request ANY sip-header From modify ">" ";otg={{WxCTrunkOTGDTG}}"
 !
 voice class codec 1
  codec preference 1 g711ulaw
@@ -157,6 +143,30 @@ voice class dpg 2200
 !
 `;
 
+const template_with_highlights = template_plain
+  .replace(/({{.+?}})/g, "<span class=\"highlight\">$1</span>");
+
+const $output = $("#output");
+$output.html(template_with_highlights);
+
+const $copy = $("#copy-button");
+
+function handler_copy() {
+  navigator.clipboard.writeText($output.text())
+    .then(() => {
+      $copy.html("Copied!");
+      setTimeout(() => {
+        $copy.html("Copy");
+      }, 1500);
+    })
+    .catch(err => {
+      console.error('Failed to copy text: ', err);
+    });
+}
+
+function handler_generate() {
+  $output.html("");
+
   const otgdtg    = $("#otgdtg").val()    || "{{WxCTrunkOTGDTG}}";
   const proxy     = $("#proxy").val()     || "{{WxCTrunkOutboundProxy}}";
   const registrar = $("#registrar").val() || "{{WxCTrunkRegistrarDomain}}";
@@ -166,8 +176,7 @@ voice class dpg 2200
   const cucm1     = $("#cucm1").val()     || "{{CUCM1}}";
   const cucm2     = $("#cucm2").val()     || "{{CUCM2}}";
   
-  // replace the fields in the template
-  const config = template
+  const config = template_with_highlights
               .replaceAll("{{WxCTrunkOTGDTG}}", otgdtg)
               .replaceAll("{{WxCTrunkOutboundProxy}}", proxy)
               .replaceAll("{{WxCTrunkRegistrarDomain}}", registrar)
@@ -177,8 +186,5 @@ voice class dpg 2200
               .replaceAll("{{CUCM1}}", cucm1)
               .replaceAll("{{CUCM2}}", cucm2);
 
-  // show the config in the output
-  $output.val(config);
-
-  return;
+  $output.html(config);
 }

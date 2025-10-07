@@ -11,12 +11,6 @@
    Base styles: opinionated defaults
    ========================================================================== */
 
-html {
-  color: #222;
-  font-size: 1em;
-  line-height: 1.4;
-}
-
 /*
  * Remove text-shadow in selection highlight:
  * https://twitter.com/miketaylr/status/12228805301
@@ -83,6 +77,10 @@ textarea {
   resize: vertical;
 }
 
+pre {
+   margin-block: 0;
+}
+
 /* ==========================================================================
    Browser Upgrade Prompt
    ========================================================================== */
@@ -99,16 +97,21 @@ textarea {
    ========================================================================== */
 
 :root {
-  font-family: monospace;
-  --bg-dark: hsl(0 0 90%);
-  --bg: hsl(0 0 95%);
-  --bg-light: hsl(0 0 100%);
-  --text: hsl(0 0 5%);
-  --text-muted: hsl(0 0 30%);
-  --border: hsl(0 0 30%);
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  --config-ff: "Roboto Mono", monospace;
+  --bg-dark: hsl(0, 0%, 90%);
+  --bg: hsl(0, 0%, 95%);
+  --bg-light: hsl(0, 0%, 100%);
+  --text: hsl(0, 0%, 5%);
+  --text-muted: hsl(0, 0%,30%);
+  --accent: hsl(16, 100%, 67%);
+  --border: hsl(0, 0%, 30%);
   --gradient: linear-gradient: (0deg, var(--bg) 95%, var(--bg-light));
   --gradient-hover: linear-gradient: (0deg, var(--bg), var(--bg-light));
-  --hightlight: hsl(0 0 100%);
+  --hightlight: hsl(0, 0%, 100%);
   --border-card: solid 1px var(--bg);
   --shadow: 0px 2px 2px hsla(0, 0%, 0%, 0.07), 0px 4px 4px hsla(0, 0%, 0%, 0.15);
 }
@@ -119,12 +122,17 @@ body {
 }
 
 h1, h2 {
+  font-weight: 400;
   color: var(--text);
+}
+
+h2 {
+  margin: 0;
 }
 
 .gridcontainer {
   display: grid;
-  gap: 1em;
+  gap: 2em;
   grid-template-columns: repeat(12, 1fr);
 }
 
@@ -132,9 +140,9 @@ label {
   color: var(--text);
 }
 
-textarea, input, button {
+textarea, #output, input, button {
+  outline: none;
   background: var(--bg);
-  color: var(--text);
   padding: 0.5rem 1rem 0.7rem 1rem;
   border-radius: 0.5rem;
   border: var(--border-card);
@@ -142,14 +150,38 @@ textarea, input, button {
   box-shadow: var(--shadow);
 }
 
-input:hover, button:hover {
+textarea, #output, input {
+  color: var(--text);
+  font-family: var(--config-ff);
+}
+
+button {
+  cursor: pointer;
+  color: var(--accent);
+  transition: transform 0.1s ease;
+}
+
+button:active {
+  transform: scale(0.98) translateY(2px);
+}
+
+input:hover, input:focus, button:focus, button:hover {
   background: var(--gradient-hover);
 }
 
-textarea {
+textarea, #output {
   width: 100%;
   height: auto;
   padding: 1rem 1rem 1rem 1rem;
+}
+
+#output {
+  white-space: pre-wrap;
+}
+
+#output .highlight {
+  color: var(--accent);
+  font-weight: 600;
 }
 
 input {
@@ -231,27 +263,40 @@ input {
   font-size: 150%;
 }
 
-.generate button {
-  position: relative;
-  z-index: 99999;
+.copy {
+  grid-row-start: 8;
+  grid-column-start: 11;
+  grid-column-end: 12;
 }
 
-.output {
+.copy button {
+  font-size: 80%;
+  margin-top: 1em;
+}
+
+.config-title {
   grid-row-start: 7;
   grid-column-start: 2;
   grid-column-end: 9;
 }
 
-.footer {
+.config-output {
   grid-row-start: 8;
+  grid-column-start: 2;
+  grid-column-end: 12;
+}
+
+.footer {
+  grid-row-start: 9;
   grid-column-start: 2;
   grid-column-end: 9;
 }
 
 .promotion {
-  grid-row-start: 9;
+  grid-row-start: 10;
   grid-column-start: 2;
   grid-column-end: 9;
+  margin-bottom: 2em;
 }
 
 /* ==========================================================================
@@ -392,11 +437,11 @@ input {
   }
 
   pre {
-    white-space: pre-wrap !important;
+    /* white-space: pre-wrap !important; */
   }
   pre,
   blockquote {
-    border: 1px solid #999;
+    /* border: 1px solid #999; */
     page-break-inside: avoid;
   }
 
