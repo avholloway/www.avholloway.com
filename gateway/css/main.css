@@ -111,6 +111,7 @@ pre {
   --border: hsl(0, 0%, 30%);
   --gradient: linear-gradient: (0deg, var(--bg) 95%, var(--bg-light));
   --gradient-hover: linear-gradient: (0deg, var(--bg), var(--bg-light));
+  --gradient-hover-light: linear-gradient: (0deg, var(--bg-light), var(--bg-lighter));
   --hightlight: hsl(0, 0%, 100%);
   --border-card: solid 1px var(--bg);
   --shadow: 0px 2px 2px hsla(0, 0%, 0%, 0.07), 0px 4px 4px hsla(0, 0%, 0%, 0.15);
@@ -121,16 +122,17 @@ body {
   color: var(--text-muted);
 }
 
-h1, h2 {
+h1, h2, h3 {
   font-weight: 400;
   color: var(--text);
 }
 
-h2 {
+h2, h3 {
   margin: 0;
 }
 
 .gridcontainer {
+  margin-top: 1em;
   display: grid;
   gap: 2em;
   grid-template-columns: repeat(12, 1fr);
@@ -185,7 +187,7 @@ textarea, #output {
 }
 
 input {
-  width: 90%;
+  margin-top: 0.5em;
 }
 
 .title {
@@ -270,11 +272,17 @@ input {
 }
 
 .copy button {
+  background: var(--bg-light);
   font-size: 80%;
   margin-top: 1em;
 }
 
+.copy button:hover {
+    background: var(--gradient-hover-light);
+}
+
 .config-title {
+  margin-top: 2em;
   grid-row-start: 7;
   grid-column-start: 2;
   grid-column-end: 9;
@@ -290,6 +298,14 @@ input {
   grid-row-start: 9;
   grid-column-start: 2;
   grid-column-end: 9;
+}
+
+.footer ul {
+  margin-top: 1em;
+}
+
+.footer li {
+  margin-bottom: 1em;
 }
 
 .promotion {
