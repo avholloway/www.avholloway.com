@@ -98,30 +98,249 @@ textarea {
    Author's custom styles
    ========================================================================== */
 
+:root {
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  --config-ff: "Roboto Mono", monospace;
+  --bg-dark: hsl(0, 0%, 90%);
+  --bg: hsl(0, 0%, 95%);
+  --bg-light: hsl(0, 0%, 100%);
+  --text: hsl(0, 0%, 5%);
+  --text-muted: hsl(0, 0%,30%);
+  --accent: hsl(16, 100%, 67%);
+  --border: hsl(0, 0%, 30%);
+  --gradient: linear-gradient: (0deg, var(--bg) 95%, var(--bg-light));
+  --gradient-hover: linear-gradient: (0deg, var(--bg), var(--bg-light));
+  --gradient-hover-light: linear-gradient: (0deg, var(--bg-light), var(--bg-lighter));
+  --hightlight: hsl(0, 0%, 100%);
+  --border-card: solid 1px var(--bg);
+  --shadow: 0px 2px 2px hsla(0, 0%, 0%, 0.07), 0px 4px 4px hsla(0, 0%, 0%, 0.15);
+}
+
+body {
+  background: var(--bg-dark);
+  color: var(--text-muted);
+}
+
+h1, h2, h3 {
+  font-weight: 400;
+  color: var(--text);
+}
+
+h2, h3 {
+  margin: 0;
+}
+
 .gridcontainer {
+  margin-top: 1em;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 2em;
+  grid-template-columns: repeat(12, 1fr);
+}
+
+label {
+  color: var(--text);
+  font-size: 125%;
+}
+
+label span {
+  display: block;
+  margin-top: -1.25em;
+  margin-left: 2em;
+}
+
+textarea, #output, input, button, select {
+  outline: none;
+  background: var(--bg);
+  padding: 0.5rem 1rem 0.7rem 1rem;
+  border-radius: 0.5rem;
+  border: var(--border-card);
+  border-top: solid 1px var(--hightlight);
+  box-shadow: var(--shadow);
+}
+
+textarea, #output, input {
+  color: var(--text);
+  font-family: var(--config-ff);
+}
+
+button {
+  cursor: pointer;
+  color: var(--accent);
+  transition: transform 0.1s ease;
+}
+
+button:active {
+  transform: scale(0.98) translateY(2px);
+}
+
+input:hover, input:focus, button:focus, button:hover, select:hover {
+  background: var(--gradient-hover);
+}
+
+textarea, #output {
+  width: 100%;
+  height: auto;
+  padding: 1rem 1rem 1rem 1rem;
 }
 
 legend {
   font-size: 150%;
 }
 
-textarea {
-  width: 80%;
-  height: auto;
+input[type="radio"] {
+  appearance: none; /* Hide default radio button */
+  -webkit-appearance: none; /* For Webkit browsers */
+  accent-color: var(--accent);
+  width: 1.2em;
+  height: 1.2em;
+  border: 2px solid #ccc;
+  border-radius: 50%;
+  display: grid;
+  place-content: center; /* Center the inner dot */
+  margin-right: 0.5em; /* Space between radio and label */
+}
+
+input[type="radio"]::before {
+  content: "";
+  width: 0.7em;
+  height: 0.7em;
+  border-radius: 50%;
+  background-color: var(--accent); /* Color of the inner dot */
+  transform: scale(0); /* Hide by default */
+  transition: transform 0.2s ease-in-out;
+}
+
+input[type="radio"]:checked::before {
+  transform: scale(1); /* Show inner dot when checked */
+}
+
+input[type="radio"]:hover {
+  border-color: #007bff;
+}
+
+input[type="radio"]:focus-visible {
+  outline: 2px solid #007bff;
+  outline-offset: 2px;
+}
+
+#output {
+  white-space: pre-wrap;
+}
+
+#output .highlight {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+input {
+  margin-top: 0.5em;
 }
 
 .title {
-  grid-column: 2 / span 2;
+  grid-row-start: 1;
+  grid-column-start: 2;
+  grid-column-end: 12;
 }
 
 .subtitle {
   margin-top: -1em;
 }
 
-* {
-  font-family: monospace;
+.switch-summarizer, .switch-expander {
+  background: var(--bg);
+  padding: 0.5rem 1rem 0.7rem 1rem;
+  border-radius: 0.5rem;
+  border: var(--border-card);
+  border-top: solid 1px var(--hightlight);
+  box-shadow: var(--shadow);
+}
+
+.switch-summarizer {
+  grid-row-start: 2;
+  grid-column-start: 2;
+  grid-column-end: 5;
+}
+
+.switch-expander {
+  grid-row-start: 2;
+  grid-column-start: 6;
+  grid-column-end: 9;
+}
+
+.input {
+  grid-row-start: 3;
+  grid-column-start: 2;
+  grid-column-end: 5;
+}
+
+.output {
+  grid-row-start: 3;
+  grid-column-start: 6;
+  grid-column-end: 9;
+}
+
+.example-input {
+  grid-row-start: 4;
+  grid-column-start: 2;
+  grid-column-end: 5;
+}
+
+.example-output {
+  grid-row-start: 4;
+  grid-column-start: 6;
+  grid-column-end: 9;
+}
+
+.notes {
+  grid-row-start: 5;
+  grid-column-start: 2;
+  grid-column-end: 12;
+}
+
+.generate {
+  grid-row-start: 6;
+  grid-column-start: 2;
+  font-size: 150%;
+}
+
+.copy {
+  grid-row-start: 8;
+  grid-column-start: 11;
+  grid-column-end: 12;
+}
+
+.copy button {
+  background: var(--bg-light);
+  font-size: 80%;
+  margin-top: 1em;
+}
+
+.copy button:hover {
+    background: var(--gradient-hover-light);
+}
+
+.footer {
+  grid-row-start: 9;
+  grid-column-start: 2;
+  grid-column-end: 9;
+}
+
+.footer ul {
+  margin-top: 1em;
+}
+
+.footer li {
+  margin-bottom: 1em;
+}
+
+.promotion {
+  grid-row-start: 6;
+  grid-column-start: 2;
+  grid-column-end: 12;
+  margin-bottom: 2em;
 }
 
 /* ==========================================================================
