@@ -32,14 +32,14 @@ voice service voip
 !
 voice class sip-profiles 1000
  rule 11 request ANY sip-header SIP-Req-URI modify "sips:" "sip:"
- rule 12 request ANY sip-header To modify "<sips:" "<sip:"
- rule 13 request ANY sip-header From modify "<sips:" "<sip:"
- rule 14 request ANY sip-header Contact modify "<sips:(.*)>" "<sip:\\1;transport=tls>" 
- rule 15 response ANY sip-header To modify "<sips:" "<sip:"
- rule 16 response ANY sip-header From modify "<sips:" "<sip:"
- rule 17 response ANY sip-header Contact modify "<sips:" "<sip:"
+ rule 12 request ANY sip-header To modify "&lt;sips:" "&lt;sip:"
+ rule 13 request ANY sip-header From modify "&lt;sips:" "&lt;sip:"
+ rule 14 request ANY sip-header Contact modify "&lt;sips:(.*)&gt;" "&lt;sip:\\1;transport=tls&gt;" 
+ rule 15 response ANY sip-header To modify "&lt;sips:" "&lt;sip:"
+ rule 16 response ANY sip-header From modify "&lt;sips:" "&lt;sip:"
+ rule 17 response ANY sip-header Contact modify "&lt;sips:" "&lt;sip:"
  rule 18 request ANY sip-header P-Asserted-Identity modify "sips:" "sip:"
- rule 21 request ANY sip-header From modify ">" ";otg={{WxCTrunkOTGDTG}}"
+ rule 21 request ANY sip-header From modify "&gt;" ";otg={{WxCTrunkOTGDTG}}"
 !
 voice class codec 1
  codec preference 1 g711ulaw
