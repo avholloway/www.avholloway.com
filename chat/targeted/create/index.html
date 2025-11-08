@@ -54,10 +54,12 @@
             const paramsString = window.location.search;
             const searchParams = new URLSearchParams(paramsString);
             const customerId = searchParams.get("customerId");
+            const agentEmail = searchParams.get("agentEmail");
 
             const data = JSON.stringify({
                 custom_chat_fields: {
-                    customerId: customerId
+                    customerId: customerId,
+                    agentEmail: agentEmail
                 },
             });
 
