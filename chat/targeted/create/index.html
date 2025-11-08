@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Webex Contact Center Live Chat</title>
+  </head>
+  <body>
+    <h1>Webex Contact Center Live Chat</h1>
+    <p>I am testing receiving a query parameter, which allows me to target a specific agent for this chat.</p>
+    <div>
+      <span
+        id="update_status"
+        style="color: coral; font-weight: bold; display: none"
+        >Data attached!</span
+      >
+    </div>
+    <div id="divicw" data-bind="2E41F777-19D8-442F-8113-F483C56F39FC" data-org="" data-guid="d4bac5a6-42de-496e-ac7a-dc3de76eaaab"></div><script>var i={t:function(t){var e="https://media.imi.chat/widget/js/imichatinit.js";try{var o=new XMLHttpRequest;o.onreadystatechange=function(){if(this.readyState==4){var t=document.getElementById("divicw");if(this.status==0){i.o(t);return}var e=document.createElement("script");e.innerHTML=this.responseText;t.parentNode.insertBefore(e,t.nextSibling)}};o.open("GET",e,true);o.send()}catch(s){console.error(s)}},o:function(t){t.insertAdjacentHTML("afterend",'<iframe id="tls_al_frm" frameborder="0" style="overflow: hidden;height: 208px;width: 394px;position: fixed;display: block;right: 48px;bottom: 12px;z-index: 99999; display:none;"></iframe>');var e=document.getElementById("tls_al_frm");var o=e.contentWindow||(e.contentDocument.document||e.contentDocument);o.document.open();o.document.write('<!doctype html><html><head><meta charset="utf-8"><title>Untitled Document</title><style>body{font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;color: #99a0b0;font-size: 14px;}.popover__content{background-color: #fbfbfe; padding: 1.5rem; border-radius: 5px; width: 300px; box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);position: relative;}.popover__message{font-weight: 600;color:#56627c;font-size: 16px;}.pull-left{float:left;}.clearfix{clear: both;}.hdr-txt{width: 218px; margin-top: 3px;}.para-txt a{text-decoration: none;color: #005cde;}.close-btn{position: absolute;right:15px;top:15px;}.close-btn a{text-decoration: none;font-weight: 400; color: #56627c; font-size: 16px;}</style></head><body><div class="popover__content"><div class="close-btn"><a href="#" onclick="closeTLSAlert();">X</a></div><div class="popover__message"><div class="pull-left hdr-txt">This browser version is not supported on LiveChat.</div></div><div class="clearfix"></div><p class="para-txt">Please update your browser to the latest version and re-open the website to access the widget. </p></div><script>function closeTLSAlert(){window.parent.postMessage({key: "close_tls_alert",value: "close_tls_alert",action: "close_tls_alert"}, "*");}<\\/script></body></html>');o.document.close();e.style.display="block";window.addEventListener("message",function(t){if(t.data.action=="close_tls_alert"){i.s()}})},s:function(){var t=document.getElementById("tls_al_frm");t.remove()}};i.t(function(t){});
+
+      // custom code addition to pass website data to webex connect flow
+      // setup a recurring check every 250ms to know when we're ready to send data
+      const wait_code = setInterval(() => {
+        console.log(
+          "%cChecking for imichatwidget...",
+          "color: coral; font-weight: bold;"
+        );
+
+        // if chat widget global object isn't present, continue to wait longer
+        if (typeof imichatwidget === "undefined") return;
+
+        console.log(
+          "%cFound imichatwidget, checking for on() function...",
+          "color: coral; font-weight: bold;"
+        );
+
+        // if chat widget on function isn't present, continue to wait longer
+        if (typeof imichatwidget.on === "undefined") return;
+
+        // chat widget global object is now found, so we stop waiting for it
+        clearInterval(wait_code);
+
+        console.log(
+          "%cFound imichatwidget and on(). Ready to go!",
+          "color: coral; font-weight: bold;"
+        );
+
+        imichatwidget.on("imichat-widget:ready", () => {
+            console.log(
+                "%cimichatwidget.on(ready) has fired! Loading up data!",
+                "color: coral; font-weight: bold;"
+            );
+
+            const paramsString = window.location.search;
+            const searchParams = new URLSearchParams(paramsString);
+            const customerId = searchParams.get("customerId");
+
+            const data = JSON.stringify({
+                custom_chat_fields: {
+                    customerId: customerId
+                },
+            });
+
+            console.log(`%c${data}`, "color: coral; font-weight: bold;");
+
+            // attach the data
+            imichatwidget.init(data, () => {
+            console.log("%cData attached!", "color: coral; font-weight: bold;");
+            document.getElementById("update_status").style.display = "block";
+            setTimeout(() => {
+                    document.getElementById("update_status").style.display = "none";
+                }, 2000);
+            });
+        });
+      }, 250);
+    </script>
+  </body>
+</html>
