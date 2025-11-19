@@ -1,3 +1,5 @@
+let mode;
+let pattern_input_list;
 let pattern_output_list;
 
 // on page load
@@ -8,6 +10,7 @@ let pattern_output_list;
 
 // the feature has switched
 function switch_feature(feature) {
+  mode = feature;
   switch (feature) {
     case "expand":
       $(".expand").show();
@@ -35,6 +38,9 @@ function handler_output_format() {
     case "normal":
       list_to_normal();
       break;
+    case "missing":
+      list_to_missing();
+      break;
     case "csv":
       list_to_csv();
       break;
@@ -53,6 +59,48 @@ function list_to_normal() {
   if (pattern_output_list.length === 0) return;
   const $output = $("#output");
   let list = pattern_output_list.join("\n");
+  $output.val(list);
+}
+
+function list_to_missing() {
+  let which_list;
+
+  switch (mode) {
+    case "expand":
+      which_list = pattern_output_list;
+      break;
+    case "summarize":
+      which_list = pattern_input_list;
+      break;
+    default:
+      return;
+  }
+
+  if (which_list.length === 0) return;
+
+  // convert string patterns to numbers
+  which_list = which_list.map(e => parseInt(e));
+
+  // sort those numbers
+  which_list = which_list.sort((a, b) => a - b);
+
+  // log the list we're working with
+  console.log("MISSING INPUT LIST");
+  console.table(which_list);
+
+  // iterate from lowest number to highest number, keeping track of missing numbers
+  let missing_numbers = [];
+  for (let i = which_list[0], j = which_list[which_list.length - 1]; i < j; i++) {
+    if (which_list.includes(i)) continue;
+    missing_numbers.push(i);
+  }
+
+  // log the list we're working with
+  console.log("MISSING OUTPUT LIST");
+  console.table(missing_numbers);
+
+  const $output = $("#output");
+  let list = missing_numbers.join("\n");
   $output.val(list);
 }
 
@@ -130,13 +178,14 @@ function handler_summarize() {
   // do we have any patterns to work with?
   if (list.length === 0) return;
 
-  // log our input
-  console.log("Input List:");
-  console.table(list);
-
   // align all patterns to the length of the first pattern
   let pattern_length = list[0].length;
   list = list.filter((e) => e.length === pattern_length);
+
+  // log our input
+  pattern_input_list = list;
+  console.log("Input List:");
+  console.table(pattern_input_list);
 
   // Replace the input with our new/clean input, so the user can see what we're summarizing for them
   // But we need a trick here to add the possible e.123 prefix back on just for cosmetics
