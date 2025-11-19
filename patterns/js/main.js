@@ -150,6 +150,10 @@ function handler_summarize() {
   // Summarize the patterns and return the patterns; one per line
   pattern_output_list = summarize(list, is_e123);
 
+  // log our output
+  console.log("Output List:");
+  console.table(pattern_output_list);
+
   // show the output in the selected format
   handler_output_format();
 
@@ -221,8 +225,8 @@ function handler_expander() {
     for (let x = starts[i]; x <= ends[i]; x++) {
       // test each number against our pattern
       if (patterns[i].test(x))
-        // store the number if it would match our pattern
-        results.push(x);
+        // store the number, as a string, if it would match our pattern
+        results.push(x.toString());
     }
   }
 
@@ -234,9 +238,9 @@ function handler_expander() {
   // results are ready
   pattern_output_list = results;
 
-  // log our input
+  // log our output
   console.log("Output List:");
-  console.table(results);
+  console.table(pattern_output_list);
 
   // show the output in the selected format
   handler_output_format();
@@ -305,10 +309,6 @@ function summarize(list, is_e123) {
   if (is_e123) {
     summarized_list = summarized_list.map((e) => "+" + e);
   }
-
-  // log our output
-  console.log("Output List:");
-  console.table(summarized_list);
 
   return summarized_list;
 }
