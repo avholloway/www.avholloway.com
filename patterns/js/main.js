@@ -27,8 +27,17 @@ function switch_feature(feature) {
 // the copy button was clicked
 function handler_copy() {
   const $output = $("#output");
-  $output.select();
-  document.execCommand("copy");
+  const textToCopy = $output.val();
+
+  navigator.clipboard.writeText(textToCopy).then(function () {
+    // Optional: Visual feedback could be added here
+    console.log('Copying to clipboard was successful!');
+  }, function (err) {
+    console.error('Could not copy text: ', err);
+    // Fallback for older browsers if needed, or just alert user
+    alert('Failed to copy to clipboard');
+  });
+
   return false;
 }
 
@@ -297,11 +306,11 @@ function handler_expander() {
 
 /*
   Input: Array of fixed length phone numbers (E.g., ["1000", "1001", "2001", "2002", "3000"])
-		 Boolean indicating if e.123 + prefix was supplied on input or not
+     Boolean indicating if e.123 + prefix was supplied on input or not
   Output: Array of summarizations for the input phone numbers (E.g., ["100[01]", "200[12]", "3000"])
 */
 function summarize(list, is_e123) {
-  
+
   // a place to store our soon to be summarized list
   let summarized_list = [];
 
