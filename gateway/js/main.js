@@ -39,7 +39,7 @@ voice class sip-profiles 1000
  rule 16 response ANY sip-header From modify "&lt;sips:" "&lt;sip:"
  rule 17 response ANY sip-header Contact modify "&lt;sips:" "&lt;sip:"
  rule 18 request ANY sip-header P-Asserted-Identity modify "sips:" "sip:"
- rule 21 request ANY sip-header From modify "&gt;" ";otg={{WxCTrunkOTGDTG}}"
+ rule 21 request ANY sip-header From modify "&gt;" ";otg={{WxCTrunkOTGDTG}}&gt;"
 !
 voice class codec 1
  codec preference 1 g711ulaw
