@@ -159,7 +159,10 @@
           const chat_window = document.querySelector("#divchatmain");
           chat_window.classList.add("customized-divchatmain");
 
-          document.querySelector("#custom-chat-button").addEventListener("click", _ => document.querySelector("#widgetlbtn").click());
+          document.querySelector("#custom-chat-button").addEventListener("click", _ => {
+            console.log("%cCustom Chat Button Clicked", "color: coral; font-weight: bold;");
+            document.querySelector("#widgetlbtn").click()
+          });
         });
       }, 250);
     </script>
