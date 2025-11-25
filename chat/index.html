@@ -20,13 +20,13 @@
     <div>
       Name: <input id="customer_name" name="customer_name" /><br />
       Email: <input id="customer_email" name="customer_email" /><br />
+      <button id="custom-chat-button">Custom Chat Button</button>
       <span
         id="update_status"
         style="color: coral; font-weight: bold; display: none"
         >Data attached!</span
       >
     </div>
-    <div><button id="custom-chat-button">Custom Chat Button</button></div>
     <div
       id="divicw"
       data-bind="40174D1F-6FBE-4AE4-A8D2-1AF3821F2291"
@@ -153,15 +153,20 @@
             }, 2000);
           });
 
-          const chat_button = document.querySelector("#imi-chatbutton");
-          chat_button.classList.add("customized-imi-chatbutton");
+          const chat_button_frame = document.querySelector("#imi-chatbutton");
+          chat_button_frame.classList.add("customized-imi-chatbutton");
+
+          const chat_button_dom = chat_button_frame.contentWindow ? chat_button_frame.contentWindow.document : chat_button_frame.contentDocument;
+          const chat_button_obj = chat_button_dom.querySelector("#widgetlbtn");
+
+          console.table([chat_button_frame, chat_button_dom, chat_button_obj]);
 
           const chat_window = document.querySelector("#divchatmain");
           chat_window.classList.add("customized-divchatmain");
 
           document.querySelector("#custom-chat-button").addEventListener("click", _ => {
             console.log("%cCustom Chat Button Clicked", "color: coral; font-weight: bold;");
-            document.querySelector("#widgetlbtn").click()
+            chat_button_obj.click();
           });
         });
       }, 250);
