@@ -9,6 +9,9 @@
       .customized-imi-chatbutton {
         left: 12px;
       }
+      .customized-divchatmain {
+        bottom: 12px;
+      }
     </style>
   </head>
   <body>
@@ -151,6 +154,9 @@
 
           const chat_button = document.querySelector("#imi-chatbutton");
           chat_button.classList.add("customized-imi-chatbutton");
+          const chat_window = document.querySelector("#divchatmain");
+          chat_window.classList.add("customized-divchatmain");
+
           console.log(`%cAdded class to button`, "color: coral; font-weight: bold;");
         });
       }, 250);
