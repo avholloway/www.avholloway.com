@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Webex Contact Center Live Chat</title>
     <style>
-      #imi-chatbutton {
+      .customized-imi-chatbutton {
         border: 3px solid red !important;
       }
     </style>
@@ -148,6 +148,9 @@
               document.getElementById("update_status").style.display = "none";
             }, 2000);
           });
+
+          const chat_button = document.querySelector("imi-chatbutton");
+          chat_button.classList.add("another-class");
         });
       }, 250);
     </script>
