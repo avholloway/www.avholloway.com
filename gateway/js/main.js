@@ -151,6 +151,14 @@ $output.html(template_with_highlights);
 
 const $copy = $("#copy-button");
 
+$("#lineport").on("change", (event) => {
+  const changed_element = $(event.currentTarget); 
+  const the_value = changed_element.val();
+  if (/@/.test(the_value)) {
+    changed_element.val(the_value.replace(/@.*/, ""));
+  }
+});
+
 function handler_copy() {
   navigator.clipboard.writeText($output.text())
     .then(() => {
