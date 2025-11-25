@@ -7,7 +7,7 @@
     <title>Webex Contact Center Live Chat</title>
     <style>
       .customized-imi-chatbutton {
-        left: 12px;
+        display: none;
       }
       .customized-divchatmain {
         bottom: 12px !important;
@@ -159,7 +159,7 @@
           const chat_window = document.querySelector("#divchatmain");
           chat_window.classList.add("customized-divchatmain");
 
-          const new_chat_button = document.querySelector("#new-chat-button").addEventListener("click", _ => document.querySelector("#widgetlbtn").click());
+          document.querySelector("#new-chat-button").addEventListener("click", _ => document.querySelector("#widgetlbtn").click());
 
           console.log(`%cAdded class to button`, "color: coral; font-weight: bold;");
         });
