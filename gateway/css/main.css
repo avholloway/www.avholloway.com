@@ -142,6 +142,10 @@ label {
   color: var(--text);
 }
 
+label .lineport-tip {
+  color: var(--accent);
+}
+
 textarea, #output, input, button {
   outline: none;
   background: var(--bg);

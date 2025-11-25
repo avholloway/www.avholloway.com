@@ -154,9 +154,12 @@ const $copy = $("#copy-button");
 $("#lineport").on("change", (event) => {
   const changed_element = $(event.currentTarget); 
   const the_value = changed_element.val();
-  if (/@/.test(the_value)) {
-    changed_element.val(the_value.replace(/@.*/, ""));
-  }
+
+  if (!/@/.test(the_value)) return;
+  
+  changed_element.val(the_value.replace(/@.*/, ""));
+  $(".lineport-tip").removeClass("hidden");
+  setTimeout(_ => $(".lineport-tip").addClass("hidden"), 3000);
 });
 
 function handler_copy() {
