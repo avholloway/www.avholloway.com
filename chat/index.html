@@ -26,7 +26,7 @@
         >Data attached!</span
       >
     </div>
-    <div><button id="custom-chat-button">Open Chat</button></div>
+    <div><button id="custom-chat-button">Custom Chat Button</button></div>
     <div
       id="divicw"
       data-bind="40174D1F-6FBE-4AE4-A8D2-1AF3821F2291"
@@ -159,9 +159,7 @@
           const chat_window = document.querySelector("#divchatmain");
           chat_window.classList.add("customized-divchatmain");
 
-          document.querySelector("#new-chat-button").addEventListener("click", _ => document.querySelector("#widgetlbtn").click());
-
-          console.log(`%cAdded class to button`, "color: coral; font-weight: bold;");
+          document.querySelector("#custom-chat-button").addEventListener("click", _ => document.querySelector("#widgetlbtn").click());
         });
       }, 250);
     </script>
