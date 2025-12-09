@@ -18,7 +18,7 @@
   <body>
     <h1>Webex Contact Center Live Chat</h1>
     <p>I am testing sending data from the website to the chat backend, as well as the proactive chat feature (which should trigger after only 5 seconds).</p>
-    <div>
+    <div style="display: none;">
       Name: <input id="customer_name" name="customer_name" /><br />
       Email: <input id="customer_email" name="customer_email" /><br />
       <button id="custom-chat-button">Custom Chat Button</button>
@@ -85,6 +85,7 @@
       };
       i.t(function (t) {});
 
+      /*
       // custom code addition to pass website data to webex connect flow
       // setup a recurring check every 250ms to know when we're ready to send data
       const wait_code = setInterval(() => {
@@ -169,6 +170,7 @@
           });
         });
       }, 250);
+      */
     </script>
   </body>
 </html>
