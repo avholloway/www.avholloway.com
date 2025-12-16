@@ -1,4 +1,4 @@
-const template_plain = `key config-key password-encrypt $encryptkey$
+const template_plain = `key config-key password-encrypt $encryptkey$ ; Optional: Customize this password
 password encryption aes
 crypto pki trustpoint wxctrustpoint
  revocation-check none
@@ -12,18 +12,16 @@ sip-ua
 crypto pki trustpool import clean url http://www.cisco.com/security/pki/trs/ios_core.p7b 
 voice service voip
  ip address trusted list
-  ipv4 0.0.0.0 0.0.0.0
+  ipv4 0.0.0.0 0.0.0.0 ; Optional: Specify all WxC and on-prem signaling addresses
  !
- mode border-element
+ mode border-element ; Note: Will require a reboot
  allow-connections sip to sip
  media statistics
  media bulk-stats
  no supplementary-service sip refer
- no supplementary-service sip handle-replaces
- fax protocol t38 version 0 ls-redundancy 0 hs-redundancy 0 fallback none
  stun
   stun flowdata agent-id 1 boot-count 4
-  stun flowdata shared-secret 0 $stunsecret$
+  stun flowdata shared-secret 0 $stunsecret$ ; Optional: Customize this password
  !
  sip
   asymmetric payload full
@@ -35,11 +33,11 @@ voice class sip-profiles 1000
  rule 12 request ANY sip-header To modify "&lt;sips:" "&lt;sip:"
  rule 13 request ANY sip-header From modify "&lt;sips:" "&lt;sip:"
  rule 14 request ANY sip-header Contact modify "&lt;sips:(.*)&gt;" "&lt;sip:\\1;transport=tls&gt;" 
- rule 15 response ANY sip-header To modify "&lt;sips:" "&lt;sip:"
- rule 16 response ANY sip-header From modify "&lt;sips:" "&lt;sip:"
- rule 17 response ANY sip-header Contact modify "&lt;sips:" "&lt;sip:"
- rule 18 request ANY sip-header P-Asserted-Identity modify "sips:" "sip:"
- rule 21 request ANY sip-header From modify "&gt;" ";otg={{WxCTrunkOTGDTG}}&gt;"
+ rule 15 request ANY sip-header P-Asserted-Identity modify "sips:" "sip:"
+ rule 16 request ANY sip-header From modify "&gt;" ";otg={{WxCTrunkOTGDTG}}&gt;"
+ rule 21 response ANY sip-header To modify "&lt;sips:" "&lt;sip:"
+ rule 22 response ANY sip-header From modify "&lt;sips:" "&lt;sip:"
+ rule 23 response ANY sip-header Contact modify "&lt;sips:" "&lt;sip:"
 !
 voice class codec 1
  codec preference 1 g711ulaw
@@ -61,6 +59,7 @@ voice class tenant 1000
  connection-reuse
  srtp-crypto 1
  session transport tcp tls
+ no session refresh
  url sips
  error-passthru
  rel1xx disable
@@ -144,7 +143,8 @@ voice class dpg 2200
 `;
 
 const template_with_highlights = template_plain
-  .replace(/({{.+?}})/g, "<span class=\"highlight\">$1</span>");
+  .replace(/({{.+?}})/g, "<span class=\"highlight\">$1</span>")
+  .replace(/(\s;\s.+)/g, "<span class=\"highlight2\">$1</span>");
 
 const $output = $("#output");
 $output.html(template_with_highlights);

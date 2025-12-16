@@ -108,6 +108,7 @@ pre {
   --text: hsl(0, 0%, 5%);
   --text-muted: hsl(0, 0%,30%);
   --accent: hsl(16, 100%, 67%);
+  --accent2: hsl(219, 79%, 66%);
   --border: hsl(0, 0%, 30%);
   --gradient: linear-gradient: (0deg, var(--bg) 95%, var(--bg-light));
   --gradient-hover: linear-gradient: (0deg, var(--bg), var(--bg-light));
@@ -187,6 +188,11 @@ textarea, #output {
 
 #output .highlight {
   color: var(--accent);
+  font-weight: 600;
+}
+
+#output .highlight2 {
+  color: var(--accent2);
   font-weight: 600;
 }
 
