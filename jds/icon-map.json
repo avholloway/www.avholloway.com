@@ -133,6 +133,16 @@
       "name": "cisco-logo-light-color",
       "color": "grey",
       "iconSet": "momentumBrandVisuals"
-    }
+    },
+    "GoogleMeet": {
+      "name": "google-meet-color",
+      "color": "grey",
+      "iconSet": "momentumBrandVisuals"
+    },
+    "Microsoft": {
+      "name": "social-microsoft-color",
+      "color": "grey",
+      "iconSet": "momentumBrandVisuals"
+    },
   }
   
