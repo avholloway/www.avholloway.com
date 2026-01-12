@@ -125,9 +125,9 @@
       "name": "calendar-day-bold",
       "color": "yellow"
     },
-    "blurtooth": {
+    "bluetooth": {
       "name": "bluetooth-filled",
-      "color": "green"
+      "color": "blue"
     }
   }
   
