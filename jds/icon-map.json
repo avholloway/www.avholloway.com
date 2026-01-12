@@ -124,6 +124,10 @@
     "multi events single day": {
       "name": "calendar-day-bold",
       "color": "yellow"
+    },
+    "blurtooth": {
+      "name": "bluetooth-filled",
+      "color": "cobalt"
     }
   }
   
