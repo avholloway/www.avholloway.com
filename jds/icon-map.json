@@ -128,6 +128,11 @@
     "bluetooth": {
       "name": "bluetooth-filled",
       "color": "pink"
+    },
+    "Cisco": {
+      "name": "cisco-logo-light-color",
+      "color": "grey",
+      "iconSet": "momentumBrandVisuals"
     }
   }
   
