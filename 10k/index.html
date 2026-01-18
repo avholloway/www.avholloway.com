@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>10K Steps Calculator</h1>
+    <fieldset>
+        <legend class="level1">Static Data</legend>
+        <fieldset>
+            <legend class="level2">Walk</legend>
+            <table>
+                <tr>
+                    <th>Stride (feet)</th>
+                    <th>Speed (mph)</th>
+                    <th>Cadence (spm)</th>
+                </tr>
+                <tr>
+                    <td><input name="wstride" id="wstride" type="text" /></td>
+                    <td><input name="wspeed" id="wspeed" type="text" /></td>
+                    <td><span id="wcadence">&nbsp;</span></td>
+                </tr>
+            </table>
+        </fieldset>
+        <fieldset>
+            <legend class="level2">Run</legend>
+            <table>
+                <tr>
+                    <th>Stride (feet)</th>
+                    <th>Speed (mph)</th>
+                    <th>Cadence (spm)</th>
+                </tr>
+                <tr>
+                    <td><input name="rstride" id="rstride" type="text" /></td>
+                    <td><input name="rspeed" id="rspeed" type="text" /></td>
+                    <td><span id="rcadence">&nbsp;</span></td>
+                </tr>
+            </table>            
+        </fieldset>
+    </fieldset>
+    <fieldset>
+        <legend class="level1">Program</legend>
+        <fieldset>
+            <legend class="level2">Walk</legend>
+            <table id="wp">
+                <tr>
+                    <th>Time (min)</th>
+                    <th>Steps</th>
+                    <th><button id="wp-row-add">➕ Add Row</button></th>
+                </tr>
+                <tr id="wp-row-n" class="hidden">
+                    <td><input name="wp-row-n-time" id="wp-row-n-time" /></td><td><span id="wp-row-n-steps">X</span></td><td><button id="wp-row-n-delete">🗑️ Delete Me</button></td>
+                </tr>
+            </table>
+            <fieldset id="wp-totals-view" class="hidden">
+                <legend class="level3">Totals</legend>
+                <table id="wp-totals">
+                    <tr>
+                        <th>Time (min)</th>
+                        <th>Steps</th>
+                    </tr>
+                    <tr>
+                        <td><span id="wp-time">X</span></td>
+                        <td><span id="wp-steps">X</span></td>
+                    </tr>
+                </table>
+            </fieldset>
+        </fieldset>
+        <fieldset>
+            <legend class="level2">Run</legend>
+            <table id="rp">
+                <tr>
+                    <th>Distance (miles)</th>
+                    <th>Steps</th>
+                    <th><button id="rp-row-add">➕ Add Row</button></th>
+                </tr>
+                <tr id="rp-row-n" class="hidden">
+                    <td><input name="rp-row-n-distance" id="rp-row-n-distance" /></td><td><span id="rp-row-n-steps">X</span></td><td><button id="rp-row-n-delete">🗑️ Delete Me</button></td>
+                </tr>
+            </table>
+            <fieldset id="rp-totals-view" class="hidden">
+                <legend class="level3">Totals</legend>
+                <table id="rp-totals">
+                    <tr>
+                        <th>Distance (miles)</th>
+                        <th>Steps</th>
+                    </tr>
+                    <tr>
+                        <td><span id="rp-distance">X</span></td>
+                        <td><span id="rp-steps">X</span></td>
+                    </tr>
+                </table>
+            </fieldset>
+        </fieldset>
+    </fieldset>
+    <fieldset id="tp-totals-view" class="hidden">
+        <legend class="level1">Totals</legend>
+        <table>
+            <tr>
+                <th>Time (min)</th>
+                <th>Steps</th>
+            </tr>
+            <tr>
+                <td><span id="tp-time">X</span></td>
+                <td><span id="tp-steps">X</span></td>
+            </tr>
+        </table>
+    </fieldset>
+    <script src="script.js"></script>
+</body>
+</html>

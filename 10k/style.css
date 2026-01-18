@@ -1,0 +1,58 @@
+.hidden {
+    display: none;
+}
+
+* {
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+}
+
+fieldset {
+    margin-top: 1rem;
+}
+
+legend.level1 { 
+    font-size: 1.75rem;
+    font-weight: bold;
+}
+
+legend.level2 { 
+    font-size: 1.5rem;
+}
+
+legend.level3 { 
+    font-size: 1.25rem;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse; /* Collapse borders for a clean look */
+  margin: 1em 0; /* Add some margin around the table */
+}
+
+caption {
+  padding: 0.5em;
+  text-align: left;
+  font-weight: bold;
+}
+
+th, td {
+  border: 1px solid #ddd; /* Light border for cells */
+  padding: 0.5em 1em; /* Space between content and border */
+  text-align: left;
+}
+
+th {
+  background-color: #f2f2f2; /* Gray background for headers */
+  font-weight: bold;
+  color: #333;
+}
+
+/* Zebra striping for better readability */
+tbody tr:nth-child(odd) {
+  background-color: #fafafa;
+}
+
+/* Hover effect on rows */
+tbody tr:hover {
+  background-color: #e9e9e9;
+}
