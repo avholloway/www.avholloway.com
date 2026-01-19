@@ -9,9 +9,9 @@
 <body>
     <h1>10K Steps Calculator</h1>
     <fieldset>
-        <legend class="level1">Static Data</legend>
+        <legend class="level1">Static Data 📊</legend>
         <fieldset>
-            <legend class="level2">Walk</legend>
+            <legend class="level2">Walk 🚶🏻‍♂️</legend>
             <table>
                 <tr>
                     <th>Stride (feet)</th>
@@ -19,14 +19,14 @@
                     <th>Cadence (spm)</th>
                 </tr>
                 <tr>
-                    <td><input name="wstride" id="wstride" type="text" /></td>
-                    <td><input name="wspeed" id="wspeed" type="text" /></td>
+                    <td><input name="wstride" id="wstride" type="text" placeholder="E.g., 2.44" /></td>
+                    <td><input name="wspeed" id="wspeed" type="text" placeholder="E.g., 3.0" /> <span id="wpace">&nbsp;</span></td>
                     <td><span id="wcadence">&nbsp;</span></td>
                 </tr>
             </table>
         </fieldset>
         <fieldset>
-            <legend class="level2">Run</legend>
+            <legend class="level2">Run 🏃‍♂️</legend>
             <table>
                 <tr>
                     <th>Stride (feet)</th>
@@ -34,25 +34,29 @@
                     <th>Cadence (spm)</th>
                 </tr>
                 <tr>
-                    <td><input name="rstride" id="rstride" type="text" /></td>
-                    <td><input name="rspeed" id="rspeed" type="text" /></td>
+                    <td><input name="rstride" id="rstride" type="text" placeholder="E.g., 3.3" /></td>
+                    <td><input name="rspeed" id="rspeed" type="text" placeholder="E.g., 6.0" /> <span id="rpace">&nbsp;</span></td>
                     <td><span id="rcadence">&nbsp;</span></td>
                 </tr>
             </table>            
         </fieldset>
     </fieldset>
     <fieldset>
-        <legend class="level1">Program</legend>
+        <legend class="level1">Activity Program 📈</legend>
         <fieldset>
-            <legend class="level2">Walk</legend>
+            <legend class="level2">Walk 🚶🏻‍♂️</legend>
             <table id="wp">
                 <tr>
                     <th>Time (min)</th>
                     <th>Steps</th>
+                    <th>Distance (miles)</th>
                     <th><button id="wp-row-add">➕ Add Row</button></th>
                 </tr>
                 <tr id="wp-row-n" class="hidden">
-                    <td><input name="wp-row-n-time" id="wp-row-n-time" /></td><td><span id="wp-row-n-steps">X</span></td><td><button id="wp-row-n-delete">🗑️ Delete Me</button></td>
+                    <td><input name="wp-row-n-time" id="wp-row-n-time" placeholder="E.g., 90" /></td>
+                    <td><span id="wp-row-n-steps">&nbsp;</span></td>
+                    <td><span id="wp-row-n-distance">&nbsp;</span></td>
+                    <td><button id="wp-row-n-delete">🗑️ Delete Me</button></td>
                 </tr>
             </table>
             <fieldset id="wp-totals-view" class="hidden">
@@ -61,24 +65,30 @@
                     <tr>
                         <th>Time (min)</th>
                         <th>Steps</th>
+                        <th>Distance (miles)</th>
                     </tr>
                     <tr>
                         <td><span id="wp-time">X</span></td>
                         <td><span id="wp-steps">X</span></td>
+                        <td><span id="wp-distance">X</span></td>
                     </tr>
                 </table>
             </fieldset>
         </fieldset>
         <fieldset>
-            <legend class="level2">Run</legend>
+            <legend class="level2">Run 🏃‍♂️</legend>
             <table id="rp">
                 <tr>
                     <th>Distance (miles)</th>
                     <th>Steps</th>
+                    <th>Time (min)</th>
                     <th><button id="rp-row-add">➕ Add Row</button></th>
                 </tr>
                 <tr id="rp-row-n" class="hidden">
-                    <td><input name="rp-row-n-distance" id="rp-row-n-distance" /></td><td><span id="rp-row-n-steps">X</span></td><td><button id="rp-row-n-delete">🗑️ Delete Me</button></td>
+                    <td><input name="rp-row-n-distance" id="rp-row-n-distance" placeholder="E.g., 5" /></td>
+                    <td><span id="rp-row-n-steps">&nbsp;</span></td>
+                    <td><span id="rp-row-n-time">&nbsp;</span></td>
+                    <td><button id="rp-row-n-delete">🗑️ Delete Me</button></td>
                 </tr>
             </table>
             <fieldset id="rp-totals-view" class="hidden">
@@ -87,10 +97,12 @@
                     <tr>
                         <th>Distance (miles)</th>
                         <th>Steps</th>
+                        <th>Time (min)</th>
                     </tr>
                     <tr>
                         <td><span id="rp-distance">X</span></td>
                         <td><span id="rp-steps">X</span></td>
+                        <td><span id="rp-time">X</span></td>
                     </tr>
                 </table>
             </fieldset>
@@ -102,10 +114,12 @@
             <tr>
                 <th>Time (min)</th>
                 <th>Steps</th>
+                <th>Distance (miles)</th>
             </tr>
             <tr>
                 <td><span id="tp-time">X</span></td>
                 <td><span id="tp-steps">X</span></td>
+                <td><span id="tp-distance">X</span></td>
             </tr>
         </table>
     </fieldset>
