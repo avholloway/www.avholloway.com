@@ -114,11 +114,16 @@
 
         imichatwidget.on("imichat-widget:ready", () => {
           console.log(
-            "%cimichatwidget.on(ready) has fired! Loading up data!",
+            "%cimichatwidget.on(ready) has fired! Loading up the text update!",
             "color: coral; font-weight: bold;"
           );
 
           const update_no_convo_text = setInterval(() => {
+            console.log(
+              "%cChecking for header and message area...",
+              "color: coral; font-weight: bold;"
+            );
+
             const h = document.querySelector("p.emptychatthreadlistheaderlabel");
 
             if (!h) return;
@@ -128,9 +133,19 @@
             if (!m) return;
 
             clearInterval(update_no_convo_text);
-            
+
+            console.log(
+              "%cFound header and message area.  Ready to update.",
+              "color: coral; font-weight: bold;"
+            );
+
             h.innerText = "hello";
             m.innerText = "world";
+
+            console.log(
+              "%cUpdated header and message area!",
+              "color: coral; font-weight: bold;"
+            );
 
           }, 250);
 
