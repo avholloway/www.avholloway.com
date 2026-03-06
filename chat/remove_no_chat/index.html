@@ -124,12 +124,15 @@
               "color: coral; font-weight: bold;"
             );
 
-            const h = document.querySelector("p.emptychatthreadlistheaderlabel");
+            const f = document.querySelector("#iframechatwindow");
+            if (!f) return;
 
+            const fdocument = f.contentDocument || f.contentWindow.document;
+
+            const h = fdocument.querySelector("p.emptychatthreadlistheaderlabel");
             if (!h) return;
 
-            const m = document.querySelector("p.emptychatthreadlistmessagelabel");
-
+            const m = fdocument.querySelector("p.emptychatthreadlistmessagelabel");
             if (!m) return;
 
             clearInterval(update_no_convo_text);
