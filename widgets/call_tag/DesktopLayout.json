@@ -1,7 +1,7 @@
 {
   "agent": {
     "version": "0.1.0",
-    "appTitle": "Webex Contact Center",
+    "appTitle": "Webex Contact Center 3",
     "logo": "",
     "stopNavigateOnAcceptTask": false,
     "dragDropEnabled": false,
@@ -65,9 +65,7 @@
             "children": [
               {
                 "comp": "call-tag-widget",
-                "properties": {
-                  "script": "https://www.avholloway.com/widgets/call_tag/index.js"
-                }
+                "script": "https://www.avholloway.com/widgets/call_tag/index.js"
               }
             ]
           },
