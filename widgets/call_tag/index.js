@@ -12,58 +12,73 @@ class CallTagWidget extends HTMLElement {
   }
 
   initDesktopSdk() {
-    const desktop = window.desktop;
+    // The 'desktop' object is globally injected by the Agent Desktop
+    const { agentContact } = window.desktop;
 
-    // Listen for contact updates to capture the Call_Tag CAD variable
-    desktop.agentContact.addEventListener("updated", (event) => {
+    // Listen for the 'updated' event to capture the active interaction and CAD
+    agentContact.addEventListener("updated", (event) => {
       const interaction = event.data.interaction;
       if (interaction) {
         this.interactionId = interaction.interactionId;
         const cad = interaction.callAssociatedData;
         
-        // Check if Call_Tag exists in the CAD variables
+        // Match the specific CAD variable name from your Flow
         if (cad && cad.Call_Tag) {
           this.currentTagValue = cad.Call_Tag.value;
-          this.render(); // Re-render to show current value
+          this.updateDropdown(this.currentTagValue);
         }
       }
     });
   }
 
+  updateDropdown(value) {
+    const select = this.shadowRoot.querySelector('#tag-dropdown');
+    if (select) select.value = value;
+  }
+
   async saveCallTag() {
-    const selectElement = this.shadowRoot.querySelector('#tag-dropdown');
-    const newValue = selectElement.value;
+    const newValue = this.shadowRoot.querySelector('#tag-dropdown').value;
+    if (!this.interactionId) return;
 
     try {
       await window.desktop.agentContact.updateInteractionContactData(this.interactionId, {
         attributes: {
-          Call_Tag: newValue
+          Call_Tag: newValue // This updates the variable in the active interaction
         }
       });
-      alert("Call Tag saved successfully.");
+      console.log("Call_Tag updated to:", newValue);
     } catch (error) {
-      console.error("Failed to update CAD variable:", error);
+      console.error("Update failed:", error);
     }
   }
 
   render() {
     this.shadowRoot.innerHTML = `
       <style>
-        .container { padding: 15px; font-family: sans-serif; display: flex; flex-direction: column; gap: 10px; }
-        select { padding: 8px; border-radius: 4px; border: 1px solid #ccc; width: 100%; }
-        button { padding: 10px; background-color: #005e7d; color: white; border: none; border-radius: 4px; cursor: pointer; }
-        button:disabled { background-color: #ccc; cursor: not-allowed; }
-        label { font-size: 0.9em; color: #666; }
+        :host { display: block; padding: 16px; font-family: CiscoSans, sans-serif; }
+        .wrapper { display: flex; flex-direction: column; gap: 12px; }
+        label { font-size: 12px; font-weight: 600; color: #333; }
+        select { padding: 8px; border: 1px solid #c2c2c2; border-radius: 4px; }
+        button { 
+          padding: 8px 16px; 
+          background-color: #007aa3; 
+          color: white; 
+          border: none; 
+          border-radius: 4px; 
+          cursor: pointer;
+          font-weight: bold;
+        }
+        button:disabled { background-color: #e0e0e0; cursor: not-allowed; }
       </style>
-      <div class="container">
-        <label for="tag-dropdown">Call Tag (CAD Variable)</label>
+      <div class="wrapper">
+        <label for="tag-dropdown">Set Call Tag</label>
         <select id="tag-dropdown">
-          <option value="" ${this.currentTagValue === '' ? 'selected' : ''}>-- Select Tag --</option>
-          <option value="Sales" ${this.currentTagValue === 'Sales' ? 'selected' : ''}>Sales</option>
-          <option value="Support" ${this.currentTagValue === 'Support' ? 'selected' : ''}>Support</option>
-          <option value="Billing" ${this.currentTagValue === 'Billing' ? 'selected' : ''}>Billing</option>
+          <option value="None">None</option>
+          <option value="Sales">Sales</option>
+          <option value="Support">Support</option>
+          <option value="Billing">Billing</option>
         </select>
-        <button id="save-btn" ${!this.interactionId ? 'disabled' : ''}>Save Tag</button>
+        <button id="save-btn">Save Variable</button>
       </div>
     `;
 
@@ -71,4 +86,5 @@ class CallTagWidget extends HTMLElement {
   }
 }
 
+// Register the custom element
 customElements.define('call-tag-widget', CallTagWidget);
