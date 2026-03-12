@@ -1,2 +1,4 @@
 /*
   Access-Control-Allow-Origin: *
+  X-Frame-Options: ALLOWALL
+  Content-Security-Policy: frame-ancestors 'self' https://*.webex.com https://*.cisco.com https://*.ciscoccservice.com;
