@@ -12,36 +12,54 @@
       this.initSdk();
     }
 
-    initSdk() {
-      const poll = () => {
-        if (window.desktop && window.desktop.agentContact) {
-          this.setupListeners();
-        } else {
-          setTimeout(poll, 500);
-        }
-      };
-      poll();
+   initSdk() {
+  const poll = () => {
+    // Checking for both the object and the active contact collection
+    if (window.desktop && window.desktop.agentContact) {
+      this.setupInitialState(); // Grab the ID if a call is already active
+      this.setupListeners();    // Watch for future changes
+    } else {
+      setTimeout(poll, 500);
     }
+  };
+  poll();
+}
+
+setupInitialState() {
+  const { agentContact } = window.desktop;
+  // Get all active interactions currently on the desktop
+  const interactions = agentContact.taskMap; 
+  
+  if (interactions && interactions.size > 0) {
+    // Get the first active interaction (usually the primary call)
+    const [firstInteraction] = interactions.values();
+    this.interactionId = firstInteraction.interactionId;
+    this.isReady = true;
+    this.syncUI(firstInteraction.callAssociatedData);
+    this.render(); 
+  }
+}
 
     setupListeners() {
-      window.desktop.agentContact.addEventListener("updated", (e) => {
-        const interaction = e.data.interaction;
-        if (interaction) {
-          this.interactionId = interaction.interactionId;
-          const cad = interaction.callAssociatedData;
-          
-          // Sync current values from the interaction into your dropdowns
-          this.vars.forEach(v => {
-            if (cad && cad[v]) {
-              const el = this.shadowRoot.querySelector(`#${v}`);
-              if (el) el.value = cad[v].value;
-            }
-          });
-          // Enable the button now that we have an active interaction ID
-          this.shadowRoot.querySelector('#save-btn').disabled = false;
-        }
-      });
+  window.desktop.agentContact.addEventListener("updated", (e) => {
+    const interaction = e.data.interaction;
+    if (interaction) {
+      this.interactionId = interaction.interactionId;
+      this.syncUI(interaction.callAssociatedData);
+      this.render();
     }
+  });
+}
+
+syncUI(cad) {
+  if (!cad) return;
+  this.vars.forEach(v => {
+    if (cad[v]) {
+      const el = this.shadowRoot.querySelector(`#${v}`);
+      if (el) el.value = cad[v].value;
+    }
+  });
+}
 
     async saveAll() {
       if (!this.interactionId) return;
