@@ -123,7 +123,12 @@
             "color: coral; font-weight: bold;"
           );
 
-          if (imichatwidget.hasInitiatedChat()) imichatwidget.show();
+          console.log(
+            `%cimichatwidget.hasInitiatedChat() is set to ${imichatwidget.hasInitiatedChat()}`,
+            "color: coral; font-weight: bold;"
+          );
+
+          // if (imichatwidget.hasInitiatedChat()) imichatwidget.show();
 
           const customer_name = document.getElementById("customer_name");
           const customer_email = document.getElementById("customer_email");
