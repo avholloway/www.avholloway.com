@@ -67,7 +67,55 @@
         },
       };
       i.t();
-      if (imichatwidget.hasInitiatedChat())imichatwidget.show();
+      
+      // custom code addition to pass website data to webex connect flow
+      // setup a recurring check every 250ms to know when we're ready to send data
+      const wait_code = setInterval(() => {
+        console.log(
+          "%cChecking for imichatwidget...",
+          "color: coral; font-weight: bold;"
+        );
+
+        // if chat widget global object isn't present, continue to wait longer
+        if (typeof imichatwidget === "undefined") return;
+
+        console.log(
+          "%cFound imichatwidget, checking for on() function...",
+          "color: coral; font-weight: bold;"
+        );
+
+        // if chat widget on function isn't present, continue to wait longer
+        if (typeof imichatwidget.on === "undefined") return;
+
+        // chat widget global object is now found, so we stop waiting for it
+        clearInterval(wait_code);
+
+        console.log(
+          "%cFound imichatwidget and on(). Ready to go!",
+          "color: coral; font-weight: bold;"
+        );
+
+        imichatwidget.on("imichat-widget:ready", () => {
+          console.log(
+            "%cimichatwidget.on(ready) has fired! Loading up data!",
+            "color: coral; font-weight: bold;"
+          );
+
+          console.log(
+            `%cimichatwidget.hasInitiatedChat() is set to ${imichatwidget.hasInitiatedChat()}`,
+            "color: coral; font-weight: bold;"
+          );
+
+          if (imichatwidget.hasInitiatedChat()) {
+            console.log(
+              "%cWe have an initiated chat already, so we're maximizing now.",
+              "color: coral; font-weight: bold;"
+            );
+            imichatwidget.show();
+            imichatwidget.maximizeWindow();
+          }
+        });
+      }, 250);
     </script>
   </body>
 </html>
