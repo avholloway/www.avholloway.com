@@ -90,9 +90,6 @@
       };
       i.t(function (t) {});
 
-      if (imichatwidget.hasInitiatedChat())imichatwidget.show();
-
-      /*
       // custom code addition to pass website data to webex connect flow
       // setup a recurring check every 250ms to know when we're ready to send data
       const wait_code = setInterval(() => {
@@ -125,6 +122,8 @@
             "%cimichatwidget.on(ready) has fired! Loading up data!",
             "color: coral; font-weight: bold;"
           );
+
+          if (imichatwidget.hasInitiatedChat()) imichatwidget.show();
 
           const customer_name = document.getElementById("customer_name");
           const customer_email = document.getElementById("customer_email");
@@ -177,7 +176,6 @@
           });
         });
       }, 250);
-      */
     </script>
   </body>
 </html>
