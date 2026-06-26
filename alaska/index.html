@@ -1,131 +1,413 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Summer Break: Seattle, Olympic National Park & Alaska Cruise | 2026</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      Summer Break: Seattle, Olympic National Park & Alaska Cruise | 2026
+    </title>
     <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f6f7;
-            color: #2c3e50;
-            line-height: 1.6;
-        }
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f6f7;
+        color: #2c3e50;
+        line-height: 1.6;
+      }
 
-        header {
-            background-color: #1a365d;
-            color: #ffffff;
-            text-align: center;
-            padding: 5rem 1rem;
-            margin-bottom: 2rem;
-        }
-        
-        header h1 {
-            margin: 0;
-            font-size: 2.8rem;
-            font-weight: 700;
-        }
-        
-        header p {
-            font-size: 1.3rem;
-            opacity: 0.9;
-            margin-top: 0.7rem;
-            letter-spacing: 1px;
-        }
+      header {
+        background-color: #1a365d;
+        color: #ffffff;
+        text-align: center;
+        padding: 5rem 1rem;
+        margin-bottom: 2rem;
+      }
 
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
+      header h1 {
+        margin: 0;
+        font-size: 2.8rem;
+        font-weight: 700;
+      }
 
-        .highlight-row {
-            display: flex;
-            align-items: center;
-            gap: 3.5rem;
-            margin-bottom: 5rem;
-        }
+      header p {
+        font-size: 1.3rem;
+        opacity: 0.9;
+        margin-top: 0.7rem;
+        letter-spacing: 1px;
+      }
 
+      .container {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 0 2rem;
+      }
+
+      .highlight-row {
+        display: flex;
+        align-items: center;
+        gap: 3.5rem;
+        margin-bottom: 5rem;
+      }
+
+      .highlight-row:nth-child(even) {
+        flex-direction: row-reverse;
+      }
+
+      .photo-block {
+        flex: 1.2;
+      }
+
+      .photo-block img {
+        width: 100%;
+        height: auto;
+        border-radius: 8px;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+        display: block;
+        cursor: pointer; /* Indicates the image is clickable */
+        transition: transform 0.2s ease;
+      }
+
+      /* Slight zoom effect on hover to encourage clicking */
+      .photo-block img:hover {
+        transform: scale(1.02);
+      }
+
+      .text-block {
+        flex: 1;
+      }
+
+      .text-block h2 {
+        color: #1a365d;
+        margin-top: 0;
+        font-size: 1.8rem;
+        border-bottom: 2px solid #e2e8f0;
+        padding-bottom: 0.5rem;
+      }
+
+      /* === Modal / Lightbox CSS === */
+      .modal {
+        display: none; /* Hidden by default */
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(
+          0,
+          0,
+          0,
+          0.85
+        ); /* Black background with opacity */
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+
+      /* Class added via JS to show the modal */
+      .modal.active {
+        display: flex;
+        opacity: 1;
+      }
+
+      .modal-content {
+        max-width: 90%;
+        max-height: 90vh;
+        border-radius: 4px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+        /* Prevents clicking the image itself from closing the modal */
+        cursor: default;
+      }
+
+      .close-btn {
+        position: absolute;
+        top: 20px;
+        right: 35px;
+        color: #f1f1f1;
+        font-size: 40px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: 0.2s;
+      }
+
+      .close-btn:hover {
+        color: #bbb;
+      }
+
+      @media (max-width: 768px) {
+        .highlight-row,
         .highlight-row:nth-child(even) {
-            flex-direction: row-reverse;
+          flex-direction: column;
+          gap: 1.5rem;
+          margin-bottom: 3.5rem;
         }
-
-        .photo-block {
-            flex: 1.2;
-        }
-
-        .photo-block img {
-            width: 100%;
-            height: auto;
-            border-radius: 8px;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.08);
-            display: block;
-        }
-
-        .text-block {
-            flex: 1;
-        }
-
-        .text-block h2 {
-            color: #1a365d;
-            margin-top: 0;
-            font-size: 1.8rem;
-            border-bottom: 2px solid #e2e8f0;
-            padding-bottom: 0.5rem;
-        }
-
-        @media (max-width: 768px) {
-            .highlight-row, 
-            .highlight-row:nth-child(even) {
-                flex-direction: column;
-                gap: 1.5rem;
-                margin-bottom: 3.5rem;
-            }
-        }
+      }
     </style>
-</head>
-<body>
-
+  </head>
+  <body>
     <header>
-        <h1>Pacific Northwest & Alaska Adventure</h1>
-        <p>June 2026 • Seattle • Olympic National Park • Cruise</p>
+      <h1>Pacific Northwest & Alaska Adventure</h1>
+      <p>June 2026 • Seattle • Olympic National Park • Cruise</p>
     </header>
 
     <div class="container">
-        
-        <section class="highlight-row">
-            <div class="photo-block">
-                <img src="images/seattle.jpg" alt="Seattle Skyline and Pike Place" loading="lazy">
-            </div>
-            <div class="text-block">
-                <h2>Exploring Seattle</h2>
-                <p>Our journey began in the Emerald City. We spent our time exploring the iconic waterfront, wandering through the bustling energy of Pike Place Market, and catching some incredible views of the city skyline before heading out into the wilderness.</p>
-            </div>
-        </section>
+      <section class="highlight-row">
+        <div class="photo-block">
+          <img
+            src="images/pike-place-market.jpeg"
+            alt="Seattle Pike Place Market"
+            loading="lazy"
+          />
+        </div>
+        <div class="text-block">
+          <h2>Exploring Seattle</h2>
+          <p>
+            Our journey began in the Seattle. We spent our time exploring the
+            iconic waterfront, wandering through the bustling energy of Pike
+            Place Market, and catching some incredible views of the city
+            skyline.
+          </p>
+        </div>
+      </section>
 
-        <section class="highlight-row">
-            <div class="photo-block">
-                <img src="images/olympic_np.jpg" alt="Olympic National Park Rainforest" loading="lazy">
-            </div>
-            <div class="text-block">
-                <h2>Olympic National Park</h2>
-                <p>A short side trip brought us to the breathtaking landscapes of the Olympic Peninsula. From the moss-draped, deep greens of the Hoh Rain Forest to the rugged, driftwood-lined Pacific coastline, the sheer diversity of the wilderness was unforgettable.</p>
-            </div>
-        </section>
+      <section class="highlight-row">
+        <div class="photo-block">
+          <img
+            src="images/underground.jpeg"
+            alt="Seattle Underground"
+            loading="lazy"
+          />
+        </div>
+        <div class="photo-block">
+          <img
+            src="images/gum-wall.jpeg"
+            alt="Seattle Pike Place Market Gum Wall"
+            loading="lazy"
+          />
+        </div>
+        <div class="text-block">
+          <h2>Gum Wall & Underground</h2>
+          <p>
+            We participated in the tradition of sticking your chewed gum to the
+            walls at the market. We also took a historic tour of the Seattle underground; the original
+            ground level of the city, before the then second level became the
+            current ground level.
+          </p>
+        </div>
+      </section>
 
-        <section class="highlight-row">
-            <div class="photo-block">
-                <img src="images/alaska_cruise.jpg" alt="Alaskan Glacier View" loading="lazy">
-            </div>
-            <div class="text-block">
-                <h2>Sailing the Inside Passage</h2>
-                <p>Then, we set sail for Alaska. Navigating through the massive, glassy fjords, watching giant chunks of tidewater glaciers calve into the sea, and spotting local wildlife right from the deck made for an incredible experience on the water.</p>
-            </div>
-        </section>
+      <section class="highlight-row">
+        <div class="photo-block">
+          <img
+            src="images/vancouver.jpeg"
+            alt="Vancouver Sign"
+            loading="lazy"
+          />
+        </div>
+        <div class="text-block">
+          <h2>Vancouver</h2>
+          <p>
+            This is the city/port where we boarded our ship, headed to Alaska.
+          </p>
+        </div>
+      </section>
+
+            <section class="highlight-row">
+        <div class="photo-block">
+          <img src="images/sunset.jpeg" alt="Sunset" loading="lazy" />
+        </div>
+        <div class="photo-block">
+          <img
+            src="images/koningsdam.jpeg"
+            alt="Koningsdam Ship"
+            loading="lazy"
+          />
+        </div>
+
+        <div class="text-block">
+          <h2>Koningsdam</h2>
+          <p>
+            For this cruise, we chose the Holland America Konginsdam, which provided us with stunning views, like this sunset.
+          </p>
+        </div>
+      </section>
+
+      <section class="highlight-row">
+        <div class="photo-block">
+          <img
+            src="images/light-house.jpeg"
+            alt="Alaskan View"
+            loading="lazy"
+          />
+        </div>
+        <div class="text-block">
+          <h2>Sailing the Inside Passage</h2>
+          <p>
+            Then, we set sail for Alaska. Navigating through the massive, glassy
+            fjords, seeing, for the first time, tidewater glaciers, and spotting local wildlife right from the deck made for an
+            incredible experience on the water.
+          </p>
+        </div>
+      </section>
+
+       <section class="highlight-row">
+        <div class="photo-block">
+          <img
+            src="images/glacier.jpeg"
+            alt="Alaskan Glacier View"
+            loading="lazy"
+          />
+        </div>
+        <div class="text-block">
+          <h2>Dawes Glacier</h2>
+          <p>
+            The scale of this massive glacier cannot be captured by an iPhone camera, from over a mile away.  This thing is roughly the height of a 20 story building back there.
+          </p>
+        </div>
+      </section>
+
+       <section class="highlight-row">
+        <div class="photo-block">
+          <img
+            src="images/alaskan-brewery.jpeg"
+            alt="Alaskan Brewery"
+            loading="lazy"
+          />
+        </div>
+        <div class="photo-block">
+          <img
+            src="images/crab.jpeg"
+            alt="Crab"
+            loading="lazy"
+          />
+        </div>
+        <div class="text-block">
+          <h2>Food & Drink</h2>
+          <p>
+            We definitely made some stops for local Alaskan Food and Drink; not that we at this specific crab, but holding it was quite the experience.
+          </p>
+        </div>
+      </section>
+
+       <section class="highlight-row">
+        <div class="photo-block">
+          <img
+            src="images/at-port.jpeg"
+            alt="At Port"
+            loading="lazy"
+          />
+        </div>
+        <div class="text-block">
+          <h2>Skagway</h2>
+          <p>
+            We had three total stops: Juneau, Skagway and Ketchikan.  Each port presented us with beautiful views of the land, like in this photo at Skagway.
+          </p>
+        </div>
+      </section>
+
+      <section class="highlight-row">
+        <div class="photo-block">
+          <img
+            src="images/olympic-national-park.jpeg"
+            alt="Olympic National Park"
+            loading="lazy"
+          />
+        </div>
+        <div class="text-block">
+          <h2>Olympic National Park</h2>
+          <p>
+            A short side trip brought us to the breathtaking landscapes of the
+            Olympic Peninsula. From the moss-draped, deep greens of the Hoh Rain
+            Forest to the rugged, driftwood-lined Pacific coastline, the sheer
+            diversity of the wilderness was unforgettable.
+          </p>
+        </div>
+      </section>
+
+            <section class="highlight-row">
+        <div class="photo-block">
+          <img
+            src="images/forrest.jpeg"
+            alt="Olympic National Park Forrest"
+            loading="lazy"
+          />
+        </div>
+        <div class="photo-block">
+          <img
+            src="images/kids-under-tree.jpeg"
+            alt="Kids Under Tree"
+            loading="lazy"
+          />
+        </div>
+        <div class="text-block">
+          <h2>Forrests</h2>
+          <p>
+            Multiple hikes through the park provided us with amazing views of the dense forrest, large trees, and awesome canopies.
+          </p>
+        </div>
+      </section>
+            <section class="highlight-row">
+        <div class="photo-block">
+          <img
+            src="images/beach.jpeg"
+            alt="Beach"
+            loading="lazy"
+          />
+        </div>
+        <div class="text-block">
+          <h2>Beach</h2>
+          <p>
+            Finishing out our vaction with exploration along the beaches, like Ruby Beach, was a nice relaxing way to wind down our journey.
+          </p>
+        </div>
+      </section>
 
     </div>
 
-</body>
+    <div id="imageModal" class="modal">
+      <span class="close-btn">&times;</span>
+      <img class="modal-content" id="fullImage" />
+    </div>
+
+    <script>
+      const modal = document.getElementById("imageModal");
+      const fullImage = document.getElementById("fullImage");
+      const closeBtn = document.querySelector(".close-btn");
+      const galleryImages = document.querySelectorAll(".photo-block img");
+
+      // 1. Open modal when any photo is clicked
+      galleryImages.forEach((img) => {
+        img.addEventListener("click", function () {
+          fullImage.src = this.src; // Pass the clicked image's source to the modal
+          modal.classList.add("active");
+          document.body.style.overflow = "hidden"; // Stop background from scrolling while modal is open
+        });
+      });
+
+      // Helper function to close the modal
+      const closeModal = () => {
+        modal.classList.remove("active");
+        document.body.style.overflow = "auto"; // Restore background scrolling
+      };
+
+      // 2. Close modal on the 'X' button
+      closeBtn.addEventListener("click", closeModal);
+
+      // 3. Close modal when clicking strictly outside the image (the dark background)
+      modal.addEventListener("click", function (e) {
+        if (e.target === modal) {
+          closeModal();
+        }
+      });
+
+      // 4. Close modal on the 'Escape' key
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape" && modal.classList.contains("active")) {
+          closeModal();
+        }
+      });
+    </script>
+  </body>
 </html>
