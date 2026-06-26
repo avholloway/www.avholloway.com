@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spring Break Family Cruise | 2026 Highlights</title>
+    <style>
+        /* Base Styles */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Header Section */
+        header {
+            background-color: #0b3c5d;
+            color: #ffffff;
+            text-align: center;
+            padding: 4rem 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+        }
+        
+        header p {
+            font-size: 1.2rem;
+            opacity: 0.8;
+            margin-top: 0.5rem;
+        }
+
+        /* Container & Layout */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .highlight-row {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+            margin-bottom: 4rem;
+        }
+
+        /* Reverses the layout for every even row */
+        .highlight-row:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        /* Image and Text Blocks */
+        .photo-block {
+            flex: 1;
+        }
+
+        .photo-block img {
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            display: block;
+        }
+
+        .text-block {
+            flex: 1;
+        }
+
+        .text-block h2 {
+            color: #0b3c5d;
+            margin-top: 0;
+        }
+
+        /* Responsive Design for Mobile */
+        @media (max-width: 768px) {
+            .highlight-row, 
+            .highlight-row:nth-child(even) {
+                flex-direction: column;
+                gap: 1.5rem;
+                margin-bottom: 3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Summer Break Family Cruise</h1>
+        <p>June 2026 • Holland American Lines</p>
+    </header>
+
+    <div class="container">
+        
+        <!-- Highlight 1 -->
+        <section class="highlight-row">
+            <div class="photo-block">
+                <!-- Replace src with your image path -->
+                <img src="/api/placeholder/600/400" alt="Family boarding the ship">
+            </div>
+            <div class="text-block">
+                <h2>Setting Sail</h2>
+                <p>Getting everyone boarded and settled in our staterooms. The weather was perfect as we pulled away from the port, and we spent the first afternoon exploring the upper decks and getting our bearings on the ship.</p>
+            </div>
+        </section>
+
+        <!-- Highlight 2 -->
+        <section class="highlight-row">
+            <div class="photo-block">
+                <img src="/api/placeholder/600/400" alt="Specialty Dining Experience">
+            </div>
+            <div class="text-block">
+                <h2>Specialty Dining</h2>
+                <p>One of the absolute highlights was the specialty dining. It was a great opportunity to sit down as a family away from the main buffet crowds, enjoy some incredible food, and recap our favorite moments from the day.</p>
+            </div>
+        </section>
+
+        <!-- Highlight 3 -->
+        <section class="highlight-row">
+            <div class="photo-block">
+                <img src="/api/placeholder/600/400" alt="Shore Excursion">
+            </div>
+            <div class="text-block">
+                <h2>Shore Excursions</h2>
+                <p>Our pre-booked excursions were totally worth it. Getting off the ship to explore the local ports gave us a break from sea days and let us stretch our legs while taking in the local sights and culture.</p>
+            </div>
+        </section>
+
+    </div>
+
+</body>
+</html>
