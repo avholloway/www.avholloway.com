@@ -3,39 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Spring Break Family Cruise | 2026 Highlights</title>
+    <title>Summer Break: Seattle, Olympic National Park & Alaska Cruise | 2026</title>
     <style>
-        /* Base Styles */
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f9f9f9;
-            color: #333;
+            background-color: #f4f6f7;
+            color: #2c3e50;
             line-height: 1.6;
         }
 
-        /* Header Section */
         header {
-            background-color: #0b3c5d;
+            background-color: #1a365d;
             color: #ffffff;
             text-align: center;
-            padding: 4rem 1rem;
+            padding: 5rem 1rem;
             margin-bottom: 2rem;
         }
         
         header h1 {
             margin: 0;
-            font-size: 2.5rem;
+            font-size: 2.8rem;
+            font-weight: 700;
         }
         
         header p {
-            font-size: 1.2rem;
-            opacity: 0.8;
-            margin-top: 0.5rem;
+            font-size: 1.3rem;
+            opacity: 0.9;
+            margin-top: 0.7rem;
+            letter-spacing: 1px;
         }
 
-        /* Container & Layout */
         .container {
             max-width: 1100px;
             margin: 0 auto;
@@ -45,25 +44,23 @@
         .highlight-row {
             display: flex;
             align-items: center;
-            gap: 3rem;
-            margin-bottom: 4rem;
+            gap: 3.5rem;
+            margin-bottom: 5rem;
         }
 
-        /* Reverses the layout for every even row */
         .highlight-row:nth-child(even) {
             flex-direction: row-reverse;
         }
 
-        /* Image and Text Blocks */
         .photo-block {
-            flex: 1;
+            flex: 1.2;
         }
 
         .photo-block img {
             width: 100%;
             height: auto;
-            border-radius: 12px;
-            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.08);
             display: block;
         }
 
@@ -72,17 +69,19 @@
         }
 
         .text-block h2 {
-            color: #0b3c5d;
+            color: #1a365d;
             margin-top: 0;
+            font-size: 1.8rem;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 0.5rem;
         }
 
-        /* Responsive Design for Mobile */
         @media (max-width: 768px) {
             .highlight-row, 
             .highlight-row:nth-child(even) {
                 flex-direction: column;
                 gap: 1.5rem;
-                margin-bottom: 3rem;
+                margin-bottom: 3.5rem;
             }
         }
     </style>
@@ -90,43 +89,39 @@
 <body>
 
     <header>
-        <h1>Summer Break Family Cruise</h1>
-        <p>June 2026 • Holland American Lines</p>
+        <h1>Pacific Northwest & Alaska Adventure</h1>
+        <p>June 2026 • Seattle • Olympic National Park • Cruise</p>
     </header>
 
     <div class="container">
         
-        <!-- Highlight 1 -->
         <section class="highlight-row">
             <div class="photo-block">
-                <!-- Replace src with your image path -->
-                <img src="/api/placeholder/600/400" alt="Family boarding the ship">
+                <img src="images/seattle.jpg" alt="Seattle Skyline and Pike Place" loading="lazy">
             </div>
             <div class="text-block">
-                <h2>Setting Sail</h2>
-                <p>Getting everyone boarded and settled in our staterooms. The weather was perfect as we pulled away from the port, and we spent the first afternoon exploring the upper decks and getting our bearings on the ship.</p>
+                <h2>Exploring Seattle</h2>
+                <p>Our journey began in the Emerald City. We spent our time exploring the iconic waterfront, wandering through the bustling energy of Pike Place Market, and catching some incredible views of the city skyline before heading out into the wilderness.</p>
             </div>
         </section>
 
-        <!-- Highlight 2 -->
         <section class="highlight-row">
             <div class="photo-block">
-                <img src="/api/placeholder/600/400" alt="Specialty Dining Experience">
+                <img src="images/olympic_np.jpg" alt="Olympic National Park Rainforest" loading="lazy">
             </div>
             <div class="text-block">
-                <h2>Specialty Dining</h2>
-                <p>One of the absolute highlights was the specialty dining. It was a great opportunity to sit down as a family away from the main buffet crowds, enjoy some incredible food, and recap our favorite moments from the day.</p>
+                <h2>Olympic National Park</h2>
+                <p>A short side trip brought us to the breathtaking landscapes of the Olympic Peninsula. From the moss-draped, deep greens of the Hoh Rain Forest to the rugged, driftwood-lined Pacific coastline, the sheer diversity of the wilderness was unforgettable.</p>
             </div>
         </section>
 
-        <!-- Highlight 3 -->
         <section class="highlight-row">
             <div class="photo-block">
-                <img src="/api/placeholder/600/400" alt="Shore Excursion">
+                <img src="images/alaska_cruise.jpg" alt="Alaskan Glacier View" loading="lazy">
             </div>
             <div class="text-block">
-                <h2>Shore Excursions</h2>
-                <p>Our pre-booked excursions were totally worth it. Getting off the ship to explore the local ports gave us a break from sea days and let us stretch our legs while taking in the local sights and culture.</p>
+                <h2>Sailing the Inside Passage</h2>
+                <p>Then, we set sail for Alaska. Navigating through the massive, glassy fjords, watching giant chunks of tidewater glaciers calve into the sea, and spotting local wildlife right from the deck made for an incredible experience on the water.</p>
             </div>
         </section>
 
