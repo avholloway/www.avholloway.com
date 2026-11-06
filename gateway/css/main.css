@@ -283,8 +283,8 @@ input {
 
 .copy button {
   background: var(--bg-light);
-  font-size: 80%;
-  margin-top: 1em;
+  font-size: 100%;
+  margin-top: 1.2em;
 }
 
 .copy button:hover {

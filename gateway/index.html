@@ -41,6 +41,7 @@
 
       <div class="webex-input">
         <h2>Webex Details</h2>
+        <p>Create your trunk in Webex Calling first, in order to obtain the six pieces of information below.</p>
       </div>
 
       <div class="webex-input-otgdtg">
@@ -57,7 +58,7 @@
       </div>
 
       <div class="webex-input-lineport">
-        <label for="lineport">Line/Port<span class="lineport-tip hidden"> (Up to LGU Only)</span></label>
+        <label for="lineport">Line/Port (LHS Only) <span class="lineport-tip hidden">Sneak Strike!</span></label>
         <input id="lineport" />
       </div>
       <div class="webex-input-username">
@@ -71,6 +72,7 @@
 
       <div class="cucm-input">
         <h2>CUCM Details</h2>
+        <p>These should be call processing nodes in your cluster.</p>
       </div>
 
       <div class="cucm-input-cucm1">
@@ -113,52 +115,75 @@
               >2024 Cisco Live LGW Troubleshooting Session</a
             >
           </li>
-          <li>UCK9 and SecurityK9 licenses required</li>
+          <li>This tool assumes you are dedicating a device to this task.  If you need to leverage an existing CUBE, you must retrofit the commands yourself, and be warned, there could be conflicting commands.</li>
+          <li>UCK9 and SecurityK9 licenses required
+            <ul>
+              <li>For vCUBE on 8000v:<pre>
+config t
+ license boot level network-essentials addon dna-essentials
+ end
+wr mem
+reload
+</pre></li>
+              <li>For CUBE on 8[23]00:<pre>
+config t
+ license boot level network-advantage addon dna-advantage
+ end
+wr mem
+reload
+</pre></li>
+              <li>For CUBE on ISR4K:<pre>
+config t
+ license boot level uck9
+ license boot level securityk9
+ end
+wr mem
+reload
+</pre>
+              </li>
+          </ul>
+          </li>
           <li>
             Template assumes a single interface; hence no bind commands. If you
             want multiple interfaces, you may need to consider your binds.
           </li>
           <li>
             I prefer to decouple the WxC subnets in the trust list. If you
-            prefer to define them, please do so.
+            prefer to define them, please do so.  <a href="https://help.webex.com/en-us/article/b2exve/Port-Reference-Information-for-Webex-Calling#section_ffr_nvz_bcc">WxC IP Subnets</a>
           </li>
           <li>
-            Numbering convention for dial-peers and the like
+            I also then decouple the CUCM addresses in the trust list too, as any server you send to, is auto trusted.  However, if you send to less CUCM nodes than you receive from (i.e., You use run on all nodes), then you will have to add those CUCM nodes to the trust list.
+          </li>
+          <li>
+            My numbering convention for dial-peers and other items is as follows:
             <ul>
               <li>
-                Four digit numbers XYZZ
+                It's a four digit number pattern: XYZZ
                 <ul>
-                  <li>First digit "X" is the leg; 1 = Webex, 2 = CUCM</li>
+                  <li>Where the first digit "X" is the leg or side; 1 = Webex, 2 = CUCM</li>
                   <li>
-                    Second digit "Y" is the direction; 0 = Agnostic, 1 =
-                    Incoming, 2 = Outgoing
+                    The second digit "Y" is the direction; 1 =
+                    Incoming, 2 = Outgoing, 0 = Bidirectional
                   </li>
                   <li>
-                    Next two digits "ZZ" are not used in this template
-                    <ul>
-                      <li>
-                        Could be used if you switched away from DPGs and use
-                        destination patterns instead
-                      </li>
-                    </ul>
+                    The next two digits "ZZ" are not used in my template so they're always "00", but could be used if you added more dial peers.  Say for example, you switched from DPGs to destination patterns, then the local DP could be "01", and long distance "02", etc.
                   </li>
                 </ul>
               </li>
             </ul>
           </li>
           <li>
-            Destination pattern is ABC123 because we need the command, but the
-            value is ignored
+            Speaking of destination patterns, mine is "ABC123" because we need the destination-pattern command, but the value is ignored.  Instead of putting in a realistic looking value, which may confuse people (e.g., 9.[2-9]..[2-9]......), I use a slightly more silly pattern, to hopefully re-enforce the idea that it's not used.  The official guide uses "BAD.BAD" but I don't like how that looks, so I use "ABC123" instead.
           </li>
           <li>
             This template is designed for two CUCM servers, but feel free to
-            adapt it for more servers or for another PBX (e.g., Avaya)
+            adapt it for more servers or for another PBX (e.g., Avaya).  Just generate the template with your two server addresses, then after you copy the config to your text editor, manually add the additional entries.  Please note, server-groups, as of this writing, only support up to 5 servers in them.
           </li>
           <li>
             This template is designed for a vanilla CUCM SIP trunk, but do
             consider the following
             <ul>
-              <li>Device Pool and therefore CMG, Location and Region</li>
+              <li>Device Pool and therefore CMG, Location and Region (unless you know how to use run on all nodes)</li>
               <li>Inbound CSS</li>
               <li>Non-secure SIP Trunk Security Profile</li>
               <li>SIP Profile with Early Offer Best Effort and OPTIONS</li>
